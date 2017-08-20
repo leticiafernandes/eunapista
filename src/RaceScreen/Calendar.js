@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class Map extends React.Component {
+export default class Calendar extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Mapa</Text>
+        <Text>Calendário</Text>
         <Text>LOADING</Text>
       </View>
     );
