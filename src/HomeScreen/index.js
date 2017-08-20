@@ -1,17 +1,41 @@
 import React, { Component } from "react";
-import HomeScreen from "./HomeScreen.js";
-import MainScreenNavigator from "../ChatScreen/index.js";
-import Profile from "../ProfileScreen/index.js";
-import SideBar from "../SideBar/SideBar.js";
-import { DrawerNavigator } from "react-navigation";
-const HomeScreenRouter = DrawerNavigator(
+import Map from "./HomeScreen.js";
+import { TabNavigator } from "react-navigation";
+import { Button, Text, Icon, Footer, FooterTab } from "native-base";
+export default (MainScreenNavigator = TabNavigator(
   {
-    Home: { screen: HomeScreen },
-    Chat: { screen: MainScreenNavigator },
-    Profile: { screen: Profile }
+    Map: { screen: Map }
   },
   {
-    contentComponent: props => <SideBar {...props} />
+    tabBarPosition: "bottom",
+    tabBarComponent: props => {
+      return (
+        <Footer>
+          <FooterTab>
+            <Button
+              vertical
+              active={props.navigationState.index === 0}
+              onPress={() => props.navigation.navigate("Map")}>
+              <Icon name="bowtie" />
+              <Text>Lucy</Text>
+            </Button>
+            <Button
+              vertical
+              active={props.navigationState.index === 1}
+              onPress={() => props.navigation.navigate("JadeChat")}>
+              <Icon name="briefcase" />
+              <Text>Nine</Text>
+            </Button>
+            <Button
+              vertical
+              active={props.navigationState.index === 2}
+              onPress={() => props.navigation.navigate("NineChat")}>
+              <Icon name="headset" />
+              <Text>Jade</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      );
+    }
   }
-);
-export default HomeScreenRouter;
+));

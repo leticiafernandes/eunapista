@@ -1,40 +1,27 @@
 import React from "react";
-import { StatusBar } from "react-native";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
-export default class HomeScreen extends React.Component {
+import { AppRegistry, View, StatusBar } from "react-native";
+import { Container, Body, Content, Header, Left, Right, Icon, Title, Input, Item, Label, Button, Text } from "native-base";
+import HomeScreen from "../HomeScreen";
+
+export default class Map extends React.Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container>
         <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
           <Body>
-            <Title>HomeScreen</Title>
+            <Title>Mapa</Title>
           </Body>
-          <Right />
         </Header>
         <Content padder>
-          <Card>
-            <CardItem>
-              <Body>
-                <Text>Chat App to talk some awesome people!</Text>
-              </Body>
-            </CardItem>
-          </Card>
-          <Button full rounded dark
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("Chat")}>
-            <Text>Chat With People</Text>
-          </Button>
-          <Button full rounded primary
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("Profile")}>
-            <Text>Goto Profiles</Text>
+          <Item floatingLabel style={{ marginTop: 20 }}>
+            <Label>Lucy Chat</Label>
+            <Input />
+          </Item>
+          <Button rounded danger
+            style={{ marginTop: 20, alignSelf: "center" }}
+            onPress={() => navigate("Profile")}>
+            <Text>Goto Lucy Profile</Text>
           </Button>
         </Content>
       </Container>
