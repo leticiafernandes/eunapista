@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet} from 'react-native';
 import { AppRegistry, View, StatusBar } from "react-native";
-import { Container, Body, Content, Header, Form, Title, Input, Item, Label, Button, Text } from "native-base";
+import { Container, Body, Content, Header, Form, Title, Input, Item, Label,Card, CardItem, Button, Text } from "native-base";
 
 export default class Register extends React.Component {
   render() {
@@ -14,6 +14,12 @@ export default class Register extends React.Component {
           </Body>
         </Header>
         <Content padder>
+          <Card>
+            <CardItem header>
+              <Text>Quer compartilhar um evento? </Text> 
+              <Text>Diz ai!</Text>
+            </CardItem>
+          </Card>
           <Form>
             <Item floatingLabel style={{ marginTop: 20 }}>
               <Label>Nome</Label>
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     marginBottom: 20,
-    alignSelf: "center", 
+    alignSelf: "center",
     backgroundColor: '#3f51b5'
   }
 });

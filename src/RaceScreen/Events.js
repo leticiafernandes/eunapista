@@ -1,15 +1,15 @@
 import React from "react";
-import { AppRegistry, View, StatusBar } from "react-native";
-import { Container, Header, Body, Content, Title, List, ListItem, Thumbnail, Text } from "native-base";
+import { AppRegistry, View, StatusBar, StyleSheet } from "react-native";
+import { Container, Header, Body, Content, Title, List, ListItem, Thumbnail,Button, Text } from "native-base";
 
 export default class Events extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const items = [
       {name: 'ASICS Golden Run', description: 'Para quem quer mais que correr'},
-      {name: '2017 Meia Maratona do Rio', description: 'Maratona CAIXA da cidade . .'},
-      {name: 'Circuito Soul Carioca', description: 'O Soul Carioca chegou para . .'},
-      {name: 'Meia do Pontal', description: 'Praça do Pontal - Recreio . .'}
+      {name: '2017 Meia Maratona do Rio', description: 'Maratona CAIXA da cidade...'},
+      {name: 'Circuito Soul Carioca', description: 'O Soul Carioca chegou para...'},
+      {name: 'Meia do Pontal', description: 'Praça do Pontal - Recreio...'}
     ];
 
     return (
@@ -27,6 +27,9 @@ export default class Events extends React.Component {
                 <Body>
                   <Text>{item.name}</Text>
                   <Text note>{item.description}</Text>
+                  <Button iconRight transparent primary>
+                    <Text>Ver</Text>
+                  </Button>
                 </Body>
               </ListItem>
             }>

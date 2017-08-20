@@ -4,14 +4,14 @@ import { TabNavigator } from "react-navigation";
 import { Button, Text, Icon, Footer, FooterTab } from "native-base";
 
 import Map from "./HomeScreen.js";
-import Calendar from "../RaceScreen/Calendar.js";
+import RaceCalendar from "../RaceScreen/RaceCalendar.js";
 import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
 
 export default (MainScreenNavigator = TabNavigator(
   {
     Map: { screen: Map },
-    Calendar: { screen: Calendar },
+    RaceCalendar: { screen: RaceCalendar },
     Events: { screen: Events },
     Register: { screen: Register }
   },
@@ -31,7 +31,7 @@ export default (MainScreenNavigator = TabNavigator(
             <Button
               vertical
               active={props.navigationState.index === 1}
-              onPress={() => props.navigation.navigate("Calendar")}>
+              onPress={() => props.navigation.navigate("RaceCalendar")}>
               <Icon name="ios-calendar-outline" />
               <Text style={styles.menuText}>Calendário</Text>
             </Button>
