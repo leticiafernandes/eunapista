@@ -1,5 +1,5 @@
 # eunapista
 
-### Aplicativo compatívem com IOS e Android, sobre eventos de corrida de rua.
+### Aplicativo compatível com IOS e Android, sobre eventos de corrida de rua.
 
 Leticia Fernandes
