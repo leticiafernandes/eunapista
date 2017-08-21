@@ -16,8 +16,8 @@ export default class Register extends React.Component {
         <Content padder>
           <Card>
             <CardItem header>
-              <Text>Quer compartilhar um evento? </Text> 
-              <Text>Diz ai!</Text>
+              <Text style={styles.titleText}>Quer compartilhar um evento? </Text>
+              <Text style={styles.titleText}>Diz ai!</Text>
             </CardItem>
           </Card>
           <Form>
@@ -67,5 +67,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignSelf: "center",
     backgroundColor: '#3f51b5'
+  },
+  titleText: {
+    color: '#3f51b5',
   }
 });
