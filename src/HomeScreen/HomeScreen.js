@@ -6,7 +6,6 @@ export default class Map extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Mapa</Text>
-        <Text>LOADING</Text>
       </View>
     );
   }

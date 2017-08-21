@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet} from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { TabNavigator } from "react-navigation";
 import { Button, Text, Icon, Footer, FooterTab } from "native-base";
 
@@ -7,13 +7,15 @@ import Map from "./HomeScreen.js";
 import RaceCalendar from "../RaceScreen/RaceCalendar.js";
 import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
+import RaceDetail from "../RaceScreen/RaceDetail.js";
 
 export default (MainScreenNavigator = TabNavigator(
   {
     Map: { screen: Map },
     RaceCalendar: { screen: RaceCalendar },
     Events: { screen: Events },
-    Register: { screen: Register }
+    Register: { screen: Register },
+    RaceDetail: {screen: RaceDetail}
   },
   {
     tabBarPosition: "bottom",
@@ -58,6 +60,6 @@ export default (MainScreenNavigator = TabNavigator(
 
 const styles = StyleSheet.create({
   menuText: {
-    fontSize: 12
+    fontSize: (Platform.OS === 'ios') ? 12 : 8,
   }
 });
