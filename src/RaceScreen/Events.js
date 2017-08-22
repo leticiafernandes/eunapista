@@ -5,7 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import axios from 'axios';
 
 export default class Events extends React.Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -28,7 +28,7 @@ export default class Events extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content padder>
           <List removeClippedSubviews={false}>
           {this.state.events.map(event =>
@@ -50,3 +50,9 @@ export default class Events extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+  }
+});

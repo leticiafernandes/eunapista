@@ -9,24 +9,25 @@ export default class RaceDetail extends React.Component {
     super(props);
 
     this.state = {
-      race: ''
+      race: {}
     };
   }
 
   componentDidMount() {
-    console.log(`entrou => ${this.props.navigation.state.params.id}`);
+    var self = this;
     axios.get(`http://10.2.8.51:3000/events/${this.props.navigation.state.params.id}.json`)
-    .then(res => {
-      this.setState({race: res.data})
+    .then(response => {
+      console.log(response);
+      self.setState({race: response.data})
     }).catch((error)=>{
       console.log("Api call error");
       alert(error.message);
     });
   }
-
+ 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content padder>
           <Card>
             <CardItem header>
@@ -36,31 +37,31 @@ export default class RaceDetail extends React.Component {
               <Body>
                 <View>
                   <Text style={styles.textTitle, styles.textColor}>Nome:</Text>
-                  <Text style={styles.textColor}>teste</Text>
+                  <Text style={styles.textColor}>{this.state.race.name}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Data da corrida:</Text>
-                  <Text style={styles.textColor}>20/08/2017</Text>
+                  <Text style={styles.textColor}>{this.state.race.start_date}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de partida:</Text>
-                  <Text style={styles.textColor}>Posto 2 - Leblon - RJ</Text>
+                  <Text style={styles.textColor}>{this.state.race.start_local}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Horário de partida:</Text>
-                  <Text style={styles.textColor}>07:00</Text>
+                  <Text style={styles.textColor}>{this.state.race.race_time}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de chegada:</Text>
-                  <Text style={styles.textColor}>Aterro do Flamengo - Flamengo - RJ</Text>
+                  <Text style={styles.textColor}>{this.state.race.finish_local}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Valor:</Text>
-                  <Text style={styles.textColor}>R$ 180,00</Text>
+                  <Text style={styles.textColor}>{this.state.race.value}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Link oficial do evento:</Text>
-                  <Text style={styles.textColor}>www.asicsgoldenrun.com</Text>
+                  <Text style={styles.textColor}>{this.state.race.link}</Text>
                 </View>
               </Body>
             </CardItem>
@@ -75,6 +76,9 @@ export default class RaceDetail extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+  },
   textColor: {
     color: '#3f51b5',
   },
