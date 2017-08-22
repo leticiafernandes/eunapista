@@ -1,10 +1,11 @@
 import React from "react";
 import { AppRegistry, View, StatusBar, StyleSheet, Alert} from "react-native";
 import { Container, Header, Body, Content, Title, List, ListItem, Thumbnail,Button, Text } from "native-base";
-import { StackNavigator } from "react-navigation";
+import { StackNavigator } from 'react-navigation';
 import axios from 'axios';
 
 export default class Events extends React.Component {
+  
   constructor(props) {
     super(props);
 
@@ -28,21 +29,16 @@ export default class Events extends React.Component {
 
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Eventos</Title>
-          </Body>
-        </Header>
         <Content padder>
           <List removeClippedSubviews={false}>
           {this.state.events.map(event =>
-            <ListItem key={event.id}> 
+            <ListItem key={event.id}>
               <Thumbnail size={80} source={require('../../img/running.png')} />
               <Body>
                 <Text>{event.name}</Text>
                 <Text note>{event.start_local}</Text>
                 <Button iconRight transparent primary
-                  onPress={() => navigate('RaceDetail')} >
+                  onPress={() => navigate('RaceDetail', { id:event.id })} >
                   <Text>Ver</Text>
                 </Button>
               </Body>

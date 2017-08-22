@@ -1,16 +1,32 @@
 import React from 'react';
 import { Platform, StyleSheet, View } from "react-native";
 import { Container, Header, Body, Content, Title, Card, CardItem, Text } from "native-base";
+import axios from 'axios';
 
 export default class RaceDetail extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      race: ''
+    };
+  }
+
+  componentDidMount() {
+    console.log(`entrou => ${this.props.navigation.state.params.id}`);
+    axios.get(`http://10.2.8.51:3000/events/${this.props.navigation.state.params.id}.json`)
+    .then(res => {
+      this.setState({race: res.data})
+    }).catch((error)=>{
+      console.log("Api call error");
+      alert(error.message);
+    });
+  }
+
   render() {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Sobre</Title>
-          </Body>
-        </Header>
         <Content padder>
           <Card>
             <CardItem header>
@@ -20,7 +36,7 @@ export default class RaceDetail extends React.Component {
               <Body>
                 <View>
                   <Text style={styles.textTitle, styles.textColor}>Nome:</Text>
-                  <Text style={styles.textColor}>ASICS Golden Run</Text>
+                  <Text style={styles.textColor}>teste</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Data da corrida:</Text>

@@ -1,21 +1,25 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet } from "react-native";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator,StackNavigator } from "react-navigation";
 import { Button, Text, Icon, Footer, FooterTab } from "native-base";
 
-import Map from "./HomeScreen.js";
+import Map from "./MapScreen.js";
 import RaceCalendar from "../RaceScreen/RaceCalendar.js";
 import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
 import RaceDetail from "../RaceScreen/RaceDetail.js";
 
+const EventNavigator = StackNavigator({
+  HomeEvents: { screen: Events },
+  RaceDetail: { screen: RaceDetail },
+});
+
 export default (MainScreenNavigator = TabNavigator(
   {
     Map: { screen: Map },
     RaceCalendar: { screen: RaceCalendar },
-    Events: { screen: Events },
-    Register: { screen: Register },
-    RaceDetail: {screen: RaceDetail}
+    Events: { screen: EventNavigator },
+    Register: { screen: Register }
   },
   {
     tabBarPosition: "bottom",
