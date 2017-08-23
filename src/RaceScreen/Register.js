@@ -43,11 +43,11 @@ export default class Register extends React.Component {
             </Item>
             <Item floatingLabel style={{ marginTop: 20 }}>
               <Label>Valor</Label>
-              <Input />
+              <Input keyboardType="decimal-pad" />
             </Item>
             <Item floatingLabel style={{ marginTop: 20 }}>
               <Label>Link oficial do evento</Label>
-              <Input />
+              <Input keyboardType="url" />
             </Item>
             <Button rounded danger
               style={styles.button}
