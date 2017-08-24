@@ -56,9 +56,10 @@ export default class Map extends React.Component {
     super(props);
 
     this.state = {
-      markers: [{
+      markers: [
+      {
         key: 1,
-        title: 'hello',
+        title: 'Sobre a corrida',
         coordinates: {
           latitude: -23.0066023,
           longitude: -43.3156324,
@@ -68,7 +69,7 @@ export default class Map extends React.Component {
       },
       {
         key: 2,
-        title: 'hello',
+        title: 'Sobre a corrida',
         coordinates: {
           latitude: -23.0044297,
           longitude: -43.3190871,
@@ -87,12 +88,17 @@ export default class Map extends React.Component {
 
         {this.state.markers.map(marker => (
           <MapView.Marker
-            key={marker.key}
-            coordinate={marker.coordinates}
-            title={marker.title}
-          />
+          key={marker.key}
+          coordinate={marker.coordinates}
+          title={marker.title}>
+            <MapView.Callout style={styles.plainView}>
+              <View>
+                <Text>Nome da corrida</Text>
+                <Text>Clique aqui para mais detalhes!</Text>
+              </View>
+            </MapView.Callout>
+          </MapView.Marker>
         ))}
-
       </MapView>
     );
   }
@@ -114,5 +120,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  plainView: {
+    flex:1,
+    width: 150,
+    height: 50,
   },
 });

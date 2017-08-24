@@ -36,7 +36,7 @@ export default class Register extends React.Component {
       link: this.state.link
     })
     .then(function (response) {
-      console.log(response);
+      console.log('sucesso');
     })
     .catch(function (error) {
       console.log(error.response);
@@ -52,7 +52,7 @@ export default class Register extends React.Component {
             <Title>Cadastro</Title>
           </Body>
         </Header>
-        <Content padder>
+        <Content style={styles.content} padder>
           <Card>
             <CardItem header>
               <Text style={styles.titleText}>Quer compartilhar um evento? </Text>
@@ -61,16 +61,17 @@ export default class Register extends React.Component {
           </Card>
           <Form>
             <View style={styles.inputBox}>
-              <Label>Nome</Label>
+              <Label style={styles.labelText}>Nome</Label>
               <TextInput
+              placeholder="Nome da corrida"
+              style={styles.marginTop}
               onChangeText={(name) => this.setState({name})}
               value={this.state.name} />
             </View>
 
             <View style={{ marginTop: 20 }}>
-              <Label>Data da corrida</Label>
+              <Label style={styles.labelText}>Data da corrida</Label>
               <DatePicker
-                style={{width: 200, borderBottomWidth: 0}}
                 date={this.state.start_date}
                 mode="date"
                 androidMode="spinner"
@@ -81,47 +82,62 @@ export default class Register extends React.Component {
                 customStyles={{
                   dateInput: {
                     borderWidth: 0,
+                    borderBottomWidth: 0.5,
+                    alignItems: 'left',
                   },
                   dateIcon: {
-                    display: 'none'
+                    display: 'none',
                   },
+                  dateText: {
+                    alignItems: 'left',
+                    fontSize:16,
+                    marginLeft: 5,
+                    bottom: 0,
+                  },
+
                 }}
                 onDateChange={(date) => {this.setState({start_date: date})}}
               />
             </View>
 
-            <View style={{ marginTop: 20 }}>
-              <Text>Local de partida</Text>
+            <View style={styles.inputBox}>
+              <Label style={styles.labelText}>Local de partida</Label>
               <GooglePlaces
               onChange={(start_local) => this.setState({start_local})}
               value={this.state.start_local} />
             </View>
 
             <View style={styles.inputBox}>
-              <Label>Horário de partida</Label>
+              <Label style={styles.labelText}>Horário de partida</Label>
               <TextInput
+              placeholder="00:00"
+              style={styles.marginTop}
               onChangeText={(race_time) => this.setState({race_time})}
               value={this.state.race_time} />
             </View>
 
-            <View style={{ marginTop: 20 }}>
-              <Label style={styles.inputBox}>Local de chegada</Label>
+            <View style={styles.inputBox}>
+              <Label style={styles.labelText}>Local de chegada</Label>
               <GooglePlaces
               onChange={(finish_local) => this.setState({finish_local})}
               value={this.state.finish_local} />
             </View>
 
             <View style={styles.inputBox}>
-              <Label>Valor</Label>
+              <Label style={styles.labelText}>Valor</Label>
               <TextInput
+              placeholder="R$ 10,00"
+              style={styles.marginTop}
               keyboardType="decimal-pad"
               onChangeText={(value) => this.setState({value})}
               value={this.state.value} />
             </View>
 
             <View style={styles.inputBox}>
-              <Label>Link oficial do evento</Label>
+              <Label style={styles.labelText}>Link oficial do evento</Label>
               <TextInput
+              placeholder="www.meuevento.com"
+              style={styles.marginTop}
               keyboardType="url"
               onChangeText={(link) => this.setState({link})}
               value={this.state.link} />
@@ -140,16 +156,26 @@ export default class Register extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    margin: 10,
+  },
+  labelText: {
+    color: '#4d4d4d'
+  },
   titleText: {
     color: '#3f51b5',
   },
   inputBox: {
     marginTop: 20,
+    borderBottomWidth:0.5,
   },
   button: {
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 20,
     alignSelf: "center",
     backgroundColor: '#3f51b5'
+  },
+  marginTop: {
+    marginTop: 20,
   }
 });

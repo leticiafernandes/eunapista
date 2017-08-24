@@ -7,10 +7,10 @@ export default class GooglePlaces extends React.Component{
   render() {
     return (
       <GooglePlacesAutocomplete
-        placeholder=''
+        placeholder="Buscar local"
         minLength={3}
         fetchDetails={true}
-        onPress={(data, details = null) => { 
+        onPress={(data, details = null) => {
           console.log(data);
           console.log(details);
         }}
@@ -24,11 +24,15 @@ export default class GooglePlaces extends React.Component{
         styles={{
           textInputContainer: {
             backgroundColor: 'rgba(0,0,0,0)',
-            borderWidth: 0,
+            borderTopWidth: 0,
+            borderBottomWidth:0,
+            borderLeftWidth:0,
+            borderRightWidth:0,
           },
           textInput:{
             marginLeft: 0,
             marginRight: 0,
+            alignItems: 'left',
             fontSize: 16,
           },
           description: {
