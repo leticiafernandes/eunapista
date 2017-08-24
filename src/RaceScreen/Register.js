@@ -1,8 +1,12 @@
 import React from "react";
-import { StyleSheet} from 'react-native';
-import { AppRegistry, View, StatusBar } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
+
+import GooglePlaces from "../RaceScreen/GooglePlaces.js";
+
 import DatePicker from "react-native-datepicker";
 import { Container, Body, Content, Header, Form, Title, Input, Item, Label,Card, CardItem, Button, Text } from "native-base";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 import axios from 'axios';
 
 export default class Register extends React.Component {
@@ -17,7 +21,7 @@ export default class Register extends React.Component {
       finish_local: '',
       value: '',
       link: ''
-    }; 
+    };
   }
 
   newEvent(){
@@ -56,56 +60,73 @@ export default class Register extends React.Component {
             </CardItem>
           </Card>
           <Form>
-            <Item floatingLabel style={{ marginTop: 20 }}>
+            <View style={styles.inputBox}>
               <Label>Nome</Label>
-              <Input
+              <TextInput
               onChangeText={(name) => this.setState({name})}
               value={this.state.name} />
-            </Item>
-            <View floatingLabel style={{ marginTop: 20, marginLeft: 12 }}>
+            </View>
+
+            <View style={{ marginTop: 20 }}>
               <Label>Data da corrida</Label>
               <DatePicker
-                style={{width: 200}}
+                style={{width: 200, borderBottomWidth: 0}}
                 date={this.state.start_date}
                 mode="date"
                 androidMode="spinner"
-                placeholder="Escolha a data"
+                placeholder=""
                 format="DD/MM/YYYY"
                 confirmBtnText="OK"
                 cancelBtnText="Cancelar"
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0,
+                  },
+                  dateIcon: {
+                    display: 'none'
+                  },
+                }}
                 onDateChange={(date) => {this.setState({start_date: date})}}
               />
             </View>
-            <Item floatingLabel style={{ marginTop: 20 }}>
-              <Label>Local de partida</Label>
-              <Input
-              onChangeText={(start_local) => this.setState({start_local})}
+
+            <View style={{ marginTop: 20 }}>
+              <Text>Local de partida</Text>
+              <GooglePlaces
+              onChange={(start_local) => this.setState({start_local})}
               value={this.state.start_local} />
-            </Item>
-            <Item floatingLabel style={{ marginTop: 20 }}>
+            </View>
+
+            <View style={styles.inputBox}>
               <Label>Horário de partida</Label>
-              <Input
+              <TextInput
               onChangeText={(race_time) => this.setState({race_time})}
               value={this.state.race_time} />
-            </Item>
-            <Item floatingLabel style={{ marginTop: 20 }}>
-              <Label>Local de chegada</Label>
-              <Input
-              onChangeText={(finish_local) => this.setState({finish_local})}
+            </View>
+
+            <View style={{ marginTop: 20 }}>
+              <Label style={styles.inputBox}>Local de chegada</Label>
+              <GooglePlaces
+              onChange={(finish_local) => this.setState({finish_local})}
               value={this.state.finish_local} />
-            </Item>
-            <Item floatingLabel style={{ marginTop: 20 }}>
+            </View>
+
+            <View style={styles.inputBox}>
               <Label>Valor</Label>
-              <Input keyboardType="decimal-pad"
+              <TextInput
+              keyboardType="decimal-pad"
               onChangeText={(value) => this.setState({value})}
               value={this.state.value} />
-            </Item>
-            <Item floatingLabel style={{ marginTop: 20 }}>
+            </View>
+
+            <View style={styles.inputBox}>
               <Label>Link oficial do evento</Label>
-              <Input keyboardType="url"
+              <TextInput
+              keyboardType="url"
               onChangeText={(link) => this.setState({link})}
               value={this.state.link} />
-            </Item>
+            </View>
+
             <Button rounded danger
               style={styles.button}
               onPress={_ => this.newEvent()}>
@@ -119,13 +140,16 @@ export default class Register extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  titleText: {
+    color: '#3f51b5',
+  },
+  inputBox: {
+    marginTop: 20,
+  },
   button: {
     marginTop: 20,
     marginBottom: 20,
     alignSelf: "center",
     backgroundColor: '#3f51b5'
-  },
-  titleText: {
-    color: '#3f51b5',
   }
 });
