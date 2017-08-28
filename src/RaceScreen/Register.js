@@ -83,13 +83,13 @@ export default class Register extends React.Component {
                   dateInput: {
                     borderWidth: 0,
                     borderBottomWidth: 0.5,
-                    alignItems: 'left',
+                    alignItems: 'flex-start',
                   },
                   dateIcon: {
                     display: 'none',
                   },
                   dateText: {
-                    alignItems: 'left',
+                    alignItems: 'flex-start',
                     fontSize:16,
                     marginLeft: 5,
                     bottom: 0,

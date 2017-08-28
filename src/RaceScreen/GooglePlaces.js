@@ -32,7 +32,7 @@ export default class GooglePlaces extends React.Component{
           textInput:{
             marginLeft: 0,
             marginRight: 0,
-            alignItems: 'left',
+            alignItems: 'flex-start',
             fontSize: 16,
           },
           description: {
