@@ -69,8 +69,14 @@ export default class Register extends React.Component {
               value={this.state.name} />
             </View>
 
-            <View style={{ marginTop: 20 }}>
-              <Label style={styles.labelText}>Data da corrida</Label>
+            <View style={{ 
+              marginTop: 20, 
+              flexDirection: 'row', 
+              flexWrap: 'wrap', 
+              alignItems: 'flex-start', 
+              }}>
+              <View><Label style={styles.labelText}>Data da corrida</Label></View>
+              <View>
               <DatePicker
                 date={this.state.start_date}
                 mode="date"
@@ -79,58 +85,67 @@ export default class Register extends React.Component {
                 format="DD/MM/YYYY"
                 confirmBtnText="OK"
                 cancelBtnText="Cancelar"
+                style={{
+                  flex: 1,
+                }}
                 customStyles={{
                   dateInput: {
                     borderWidth: 0,
                     borderBottomWidth: 0.5,
-                    alignItems: 'flex-start',
+                    padding: 0,
+                    
                   },
                   dateIcon: {
                     display: 'none',
                   },
                   dateText: {
-                    alignItems: 'flex-start',
                     fontSize:16,
-                    marginLeft: 5,
+                    marginLeft: 0,
                     bottom: 0,
+                    marginTop: 20
                   },
 
                 }}
                 onDateChange={(date) => {this.setState({start_date: date})}}
               />
+              </View>
             </View>
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de partida</Label>
               <GooglePlaces
-              onChange={(start_local) => this.setState({start_local})}
-              value={this.state.start_local} />
+                onChange={(start_local) => this.setState({start_local})}
+                value={this.state.start_local} 
+                />
             </View>
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Horário de partida</Label>
               <TextInput
-              placeholder="00:00"
-              style={styles.marginTop}
-              onChangeText={(race_time) => this.setState({race_time})}
-              value={this.state.race_time} />
+                placeholder="00:00"
+                style={styles.marginTop}
+                onChangeText={(race_time) => this.setState({race_time})}
+                value={this.state.race_time} 
+                />
             </View>
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de chegada</Label>
               <GooglePlaces
-              onChange={(finish_local) => this.setState({finish_local})}
-              value={this.state.finish_local} />
+                onChange={(finish_local) => this.setState({finish_local})}
+                value={this.state.finish_local} 
+                />
             </View>
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Valor</Label>
               <TextInput
-              placeholder="R$ 10,00"
-              style={styles.marginTop}
-              keyboardType="decimal-pad"
-              onChangeText={(value) => this.setState({value})}
-              value={this.state.value} />
+                placeholder="R$ 10,00"
+                style={styles.marginTop}
+                keyboardType="decimal-pad"
+                onChangeText={(value) => this.setState({value})}
+                value={this.state.value} 
+                />
             </View>
 
             <View style={styles.inputBox}>
@@ -160,7 +175,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   labelText: {
-    color: '#4d4d4d'
+    color: '#4d4d4d',
   },
   titleText: {
     color: '#3f51b5',
