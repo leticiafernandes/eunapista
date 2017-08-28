@@ -26,7 +26,7 @@ export default class Register extends React.Component {
 
   newEvent(){
     console.log(`name=> ${this.state.name} / start_date => ${this.state.start_date} / start_local => ${this.state.start_local} / race_time => ${this.state.race_time} / finish_local => ${this.state.finish_local} / value => ${this.state.value} / link => ${this.state.link}`);
-    axios.post('http://10.2.8.51:3000/events', {
+    axios.post('https://eu-na-pista.herokuapp.com/events', {
       name: this.state.name,
       start_date: this.state.start_date,
       start_local: this.state.start_local,
