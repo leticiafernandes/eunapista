@@ -15,7 +15,7 @@ export default class RaceDetail extends React.Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(`http://10.2.8.51:3000/events/${this.props.navigation.state.params.id}.json`)
+    axios.get(`https://eu-na-pista.herokuapp.com/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
       console.log(response);
       self.setState({race: response.data})
@@ -24,7 +24,7 @@ export default class RaceDetail extends React.Component {
       alert(error.message);
     });
   }
- 
+
   render() {
     return (
       <Container style={styles.container}>
