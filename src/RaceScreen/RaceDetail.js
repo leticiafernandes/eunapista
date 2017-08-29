@@ -17,7 +17,6 @@ export default class RaceDetail extends React.Component {
     var self = this;
     axios.get(`https://eu-na-pista.herokuapp.com/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
-      console.log(response);
       self.setState({race: response.data})
     }).catch((error)=>{
       console.log("Api call error");

@@ -3,17 +3,24 @@ import React from "react";
 
 var {GooglePlacesAutocomplete} = require('react-native-google-places-autocomplete');
 
-export default class GooglePlaces extends React.Component{
+export default class GooglePlaces extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  handleUserSelection(value) {
+    console.log(this.props);
+    this.props.onPress(value.description);
+  }
+
   render() {
     return (
       <GooglePlacesAutocomplete
         placeholder="Buscar local"
         minLength={3}
         fetchDetails={true}
-        onPress={(data, details = null) => {
-          console.log(data);
-          console.log(details);
-        }}
+        onPress={this.handleUserSelection.bind(this)}
         getDefaultValue={() => {
           return '';
         }}

@@ -36,10 +36,11 @@ export default class Register extends React.Component {
       link: this.state.link
     })
     .then(function (response) {
-      console.log('sucesso');
+      this.props.navigation.navigate("Events");
+      console.log('Sucesso!');
     })
     .catch(function (error) {
-      console.log(error.response);
+      console.log(`Error: ${error.response}`);
     });
   }
 
@@ -69,12 +70,7 @@ export default class Register extends React.Component {
               value={this.state.name} />
             </View>
 
-            <View style={{ 
-              marginTop: 20, 
-              flexDirection: 'row', 
-              flexWrap: 'wrap', 
-              alignItems: 'flex-start', 
-              }}>
+            <View style={styles.inputBox}>
               <Label style={styles.labelText}>Data da corrida</Label>
               <DatePicker
                 date={this.state.start_date}
@@ -84,15 +80,12 @@ export default class Register extends React.Component {
                 format="DD/MM/YYYY"
                 confirmBtnText="OK"
                 cancelBtnText="Cancelar"
-                style={{
-                  flex: 1,
-                }}
                 customStyles={{
                   dateInput: {
                     borderWidth: 0,
-                    borderBottomWidth: 0.5,
+                    borderBottomWidth: 0,
                     padding: 0,
-                    
+                    alignItems: 'flex-start'
                   },
                   dateIcon: {
                     display: 'none',
@@ -101,9 +94,12 @@ export default class Register extends React.Component {
                     fontSize:16,
                     marginLeft: 0,
                     bottom: 0,
-                    marginTop: 20
+                    marginTop: 20,
+                    height: 20.5,
                   },
-
+                  btnTextConfirm: {
+                    color: '#000'
+                  }
                 }}
                 onDateChange={(date) => {this.setState({start_date: date})}}
               />
@@ -112,7 +108,7 @@ export default class Register extends React.Component {
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de partida</Label>
               <GooglePlaces
-                onChange={(start_local) => this.setState({start_local})}
+                onPress={(local) => this.setState({start_local: local})}
                 value={this.state.start_local} 
                 />
             </View>
@@ -130,7 +126,7 @@ export default class Register extends React.Component {
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de chegada</Label>
               <GooglePlaces
-                onChange={(finish_local) => this.setState({finish_local})}
+                onPress={(local) => this.setState({finish_local: local})}
                 value={this.state.finish_local} 
                 />
             </View>
@@ -172,8 +168,8 @@ const styles = StyleSheet.create({
   content: {
     margin: 10,
   },
-  labelText: {
-    color: '#4d4d4d',
+  labelText : {
+    color : '#4d4d4d'
   },
   titleText: {
     color: '#3f51b5',
