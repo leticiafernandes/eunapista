@@ -74,9 +74,8 @@ export default class Register extends React.Component {
               flexDirection: 'row', 
               flexWrap: 'wrap', 
               alignItems: 'flex-start', 
-              }}>
-              <View><Label style={styles.labelText}>Data da corrida</Label></View>
-              <View>
+              }}> 
+              <Label style={styles.labelText}>Data da corrida</Label>
               <DatePicker
                 date={this.state.start_date}
                 mode="date"
@@ -108,7 +107,6 @@ export default class Register extends React.Component {
                 }}
                 onDateChange={(date) => {this.setState({start_date: date})}}
               />
-              </View>
             </View>
 
             <View style={styles.inputBox}>
