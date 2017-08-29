@@ -74,7 +74,7 @@ export default class Register extends React.Component {
               flexDirection: 'row', 
               flexWrap: 'wrap', 
               alignItems: 'flex-start', 
-              }}> 
+              }}>
               <Label style={styles.labelText}>Data da corrida</Label>
               <DatePicker
                 date={this.state.start_date}
