@@ -36,7 +36,7 @@ export default class Events extends React.Component {
               <Thumbnail size={80} source={require('../../img/running.png')} />
               <Body>
                 <Text>{event.name}</Text>
-                <Text note>{event.start_local}</Text>
+                <Text note>{event.start_local.split('-')[0].trim()}</Text> 
                 <Button iconRight transparent primary
                   onPress={() => navigate('RaceDetail', { id:event.id })} >
                   <Text>Ver</Text>
