@@ -1,7 +1,10 @@
 import React from 'react';
 import { Platform, StyleSheet, View } from "react-native";
+
 import { Container, Header, Body, Content, Title, Card, CardItem, Text } from "native-base";
 import axios from 'axios';
+import moment from 'moment';
+import numeral from 'numeral';
 
 export default class RaceDetail extends React.Component {
 
@@ -34,13 +37,13 @@ export default class RaceDetail extends React.Component {
             </CardItem>
             <CardItem>
               <Body>
-                <View>
+                <View> 
                   <Text style={styles.textTitle, styles.textColor}>Nome:</Text>
                   <Text style={styles.textColor}>{this.state.race.name}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Data da corrida:</Text>
-                  <Text style={styles.textColor}>{this.state.race.start_date}</Text>
+                  <Text style={styles.textColor}>{moment(Date(this.state.race.start_date)).format('DD/MM/YYYY')}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de partida:</Text>
@@ -48,7 +51,7 @@ export default class RaceDetail extends React.Component {
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Horário de partida:</Text>
-                  <Text style={styles.textColor}>{this.state.race.race_time}</Text>
+                  <Text style={styles.textColor}>{moment.utc(this.state.race.race_time).format("HH:mm")}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de chegada:</Text>
@@ -56,7 +59,7 @@ export default class RaceDetail extends React.Component {
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Valor:</Text>
-                  <Text style={styles.textColor}>{this.state.race.value}</Text>
+                  <Text style={styles.textColor}>{numeral(this.state.race.value).format('0,0')}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Link oficial do evento:</Text>
