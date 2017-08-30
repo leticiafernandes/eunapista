@@ -25,22 +25,25 @@ export default class Register extends React.Component {
   }
 
   newEvent(){
-    console.log(`name=> ${this.state.name} / start_date => ${this.state.start_date} / start_local => ${this.state.start_local} / race_time => ${this.state.race_time} / finish_local => ${this.state.finish_local} / value => ${this.state.value} / link => ${this.state.link}`);
-    axios.post('https://eu-na-pista.herokuapp.com/events', {
-      name: this.state.name,
-      start_date: this.state.start_date,
-      start_local: this.state.start_local,
-      race_time: this.state.race_time,
-      finish_local: this.state.finish_local,
-      value: this.state.value,
-      link: this.state.link
-    })
-    .then(function (response) {
+    let url = 'https://eu-na-pista.herokuapp.com/events',
+        params = {
+          name: this.state.name,
+          start_date: this.state.start_date,
+          start_local: this.state.start_local,
+          race_time: this.state.race_time,
+          finish_local: this.state.finish_local,
+          value: this.state.value,
+          link: this.state.link
+        };
+
+    axios
+    .post(url, params)
+    .then(response => {
       this.props.navigation.navigate("Events");
       console.log('Sucesso!');
     })
-    .catch(function (error) {
-      console.log(`Error: ${error.response}`);
+    .catch(error => {
+      console.log(`Error: ${error}`);
     });
   }
 
@@ -154,7 +157,7 @@ export default class Register extends React.Component {
 
             <Button rounded danger
               style={styles.button}
-              onPress={_ => this.newEvent()}>
+              onPress={this.newEvent.bind(this)}>
               <Text>Criar!</Text>
             </Button>
           </Form>
