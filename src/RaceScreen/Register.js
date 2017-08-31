@@ -52,12 +52,18 @@ export default class Register extends React.Component {
   validateRegister = () => {
     console.log(`resultado nome ==> ${this.state.name}`);
     const nameError = validate('name', this.state.name)
+    const raceTimeError = validate('raceTime', this.state.race_time)
+    const raceValueError = validate('raceValue', this.state.value)
+    const raceLinkError = validate('raceLink', this.state.value)
 
     this.setState({
-      nameError: nameError
+      nameError: nameError,
+      raceTimeError: raceTimeError,
+      raceValueError: raceValueError,
+      raceLinkError: raceLinkError
     })
 
-    if (!nameError) {
+    if (!nameError && !raceTimeError && !raceValueError && !raceLinkError) {
       alert('Details are valid!')
     }
   }
@@ -140,13 +146,17 @@ export default class Register extends React.Component {
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Horário de partida</Label>
-              <TextInput
-                placeholder="00:00"
-                underlineColorAndroid="transparent"
-                style={styles.marginTop}
-                onChangeText={(race_time) => this.setState({race_time})}
-                value={this.state.race_time} 
-                />
+              <TextField
+              placeholder="00:00"
+              underlineColorAndroid="transparent"
+              style={styles.marginTop}
+              onChangeText={(race_time) => this.setState({race_time: value.trim()})}
+              onBlur={() => {
+                this.setState({
+                  raceTimeError: validate('raceTime', this.state.race_time)
+                })
+              }}
+              error={this.state.raceTimeError} />
             </View>
 
             <View style={styles.inputBox}>
@@ -159,25 +169,34 @@ export default class Register extends React.Component {
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Valor</Label>
-              <TextInput
-                placeholder="R$ 10,00"
-                underlineColorAndroid="transparent"
-                style={styles.marginTop}
-                keyboardType="decimal-pad"
-                onChangeText={(value) => this.setState({value})}
-                value={this.state.value} 
-                />
+              <TextField
+              placeholder="R$ 00,00"
+              underlineColorAndroid="transparent"
+              style={styles.marginTop}
+              keyboardType="decimal-pad"
+              onChangeText={(value) => this.setState({value: value.trim()})}
+              onBlur={() => {
+                this.setState({
+                  raceValueError: validate('raceValue', this.state.value)
+                })
+              }}
+              error={this.state.raceValueError} />
             </View>
 
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Link oficial do evento</Label>
-              <TextInput
+              <TextField
               placeholder="www.meuevento.com"
               underlineColorAndroid="transparent"
               style={styles.marginTop}
               keyboardType="url"
-              onChangeText={(link) => this.setState({link})}
-              value={this.state.link} />
+              onChangeText={(link) => this.setState({link: value.trim()})}
+              onBlur={() => {
+                this.setState({
+                  raceLinkError: validate('raceLink', this.state.link)
+                })
+              }}
+              error={this.state.raceLinkError} />
             </View>
 
             <Button rounded danger
