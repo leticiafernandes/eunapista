@@ -1,13 +1,15 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 
-import GooglePlaces from "../RaceScreen/GooglePlaces.js";
+import axios from "axios"; 
+
+import TextField from "../Util/TextField.js";
+import validation from "../Util/validation_messages.js";
+import validate from "../Util/validate_rules.js";
 
 import DatePicker from "react-native-datepicker";
+import GooglePlaces from "../RaceScreen/GooglePlaces.js";
 import { Container, Body, Content, Header, Form, Title, Input, Item, Label,Card, CardItem, Button, Text } from "native-base";
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
-import axios from 'axios';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -47,6 +49,19 @@ export default class Register extends React.Component {
     });
   }
 
+  validateRegister = () => {
+    console.log(`resultado nome ==> ${this.state.name}`);
+    const nameError = validate('name', this.state.name)
+
+    this.setState({
+      nameError: nameError
+    })
+
+    if (!nameError) {
+      alert('Details are valid!')
+    }
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -66,11 +81,18 @@ export default class Register extends React.Component {
           <Form>
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Nome</Label>
-              <TextInput
+
+              <TextField
               placeholder="Nome da corrida"
+              underlineColorAndroid="transparent"
               style={styles.marginTop}
-              onChangeText={(name) => this.setState({name})}
-              value={this.state.name} />
+              onChangeText={(name) => this.setState({name: value.trim()})}
+              onBlur={() => {
+                this.setState({
+                  nameError: validate('name', this.state.name)
+                })
+              }}
+              error={this.state.nameError} />
             </View>
 
             <View style={styles.inputBox}>
@@ -120,6 +142,7 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Horário de partida</Label>
               <TextInput
                 placeholder="00:00"
+                underlineColorAndroid="transparent"
                 style={styles.marginTop}
                 onChangeText={(race_time) => this.setState({race_time})}
                 value={this.state.race_time} 
@@ -138,6 +161,7 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Valor</Label>
               <TextInput
                 placeholder="R$ 10,00"
+                underlineColorAndroid="transparent"
                 style={styles.marginTop}
                 keyboardType="decimal-pad"
                 onChangeText={(value) => this.setState({value})}
@@ -149,6 +173,7 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Link oficial do evento</Label>
               <TextInput
               placeholder="www.meuevento.com"
+              underlineColorAndroid="transparent"
               style={styles.marginTop}
               keyboardType="url"
               onChangeText={(link) => this.setState({link})}
@@ -157,7 +182,8 @@ export default class Register extends React.Component {
 
             <Button rounded danger
               style={styles.button}
-              onPress={this.newEvent.bind(this)}>
+              onPress={this.validateRegister}>
+              
               <Text>Criar!</Text>
             </Button>
           </Form>

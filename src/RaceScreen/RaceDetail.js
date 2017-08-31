@@ -70,7 +70,7 @@ export default class RaceDetail extends React.Component {
             <CardItem footer>
               <Text style={styles.textColor}>E ai, vai correr?</Text>
             </CardItem>
-         </Card>
+         </Card> 
         </Content>
       </Container>
     );
