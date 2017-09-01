@@ -10,10 +10,8 @@ export default function validate(fieldName, value) {
   formFields[fieldName] = validation[fieldName]
 
   const result = validatejs(formValues, formFields)
-
   if (result) {
     return result[fieldName][0]
-  }
-
+  } 
   return null
 }

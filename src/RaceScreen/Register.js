@@ -26,7 +26,7 @@ export default class Register extends React.Component {
     };
   }
 
-  newEvent(){
+  newEvent = () => {
     let url = 'https://eu-na-pista.herokuapp.com/events',
         params = {
           name: this.state.name,
@@ -50,11 +50,11 @@ export default class Register extends React.Component {
   }
 
   validateRegister = () => {
-    console.log(`resultado nome ==> ${this.state.name}`);
-    const nameError = validate('name', this.state.name)
-    const raceTimeError = validate('raceTime', this.state.race_time)
-    const raceValueError = validate('raceValue', this.state.value)
-    const raceLinkError = validate('raceLink', this.state.value)
+    console.log(`entrei1`);
+    const nameError = validate('name', this.state.name);
+    const raceTimeError = validate('raceTime', this.state.race_time);
+    const raceValueError = validate('raceValue', this.state.value);
+    const raceLinkError = validate('raceLink', this.state.value);
 
     this.setState({
       nameError: nameError,
@@ -63,8 +63,13 @@ export default class Register extends React.Component {
       raceLinkError: raceLinkError
     })
 
+    console.log(`nameError=> ${nameError}`);
+    console.log(`nameError=> ${raceTimeError}`);
+    console.log(`nameError=> ${raceValueError}`);
+    console.log(`nameError=> ${raceLinkError}`);
     if (!nameError && !raceTimeError && !raceValueError && !raceLinkError) {
-      alert('Details are valid!')
+      //newEvent();
+      alert('Details are valid!');
     }
   }
 
@@ -85,7 +90,7 @@ export default class Register extends React.Component {
             </CardItem>
           </Card>
           <Form>
-            <View style={styles.inputBox}>
+            <View style={styles.marginTop}>
               <Label style={styles.labelText}>Nome</Label>
 
               <TextField
@@ -95,7 +100,7 @@ export default class Register extends React.Component {
               onChangeText={(name) => this.setState({name: value.trim()})}
               onBlur={() => {
                 this.setState({
-                  nameError: validate('name', this.state.name)
+                  nameError: validateRegister('name', this.state.name)
                 })
               }}
               error={this.state.nameError} />
@@ -144,7 +149,7 @@ export default class Register extends React.Component {
                 />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.marginTop}>
               <Label style={styles.labelText}>Horário de partida</Label>
               <TextField
               placeholder="00:00"
@@ -167,7 +172,7 @@ export default class Register extends React.Component {
                 />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.marginTop}>
               <Label style={styles.labelText}>Valor</Label>
               <TextField
               placeholder="R$ 00,00"
@@ -183,12 +188,11 @@ export default class Register extends React.Component {
               error={this.state.raceValueError} />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.marginTop}>
               <Label style={styles.labelText}>Link oficial do evento</Label>
               <TextField
               placeholder="www.meuevento.com"
               underlineColorAndroid="transparent"
-              style={styles.marginTop}
               keyboardType="url"
               onChangeText={(link) => this.setState({link: value.trim()})}
               onBlur={() => {
