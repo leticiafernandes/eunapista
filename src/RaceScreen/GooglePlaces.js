@@ -17,7 +17,7 @@ export default class GooglePlaces extends React.Component {
   render() {
     return (
       <GooglePlacesAutocomplete
-        placeholder="Buscar local"
+        placeholder=""
         minLength={3}
         fetchDetails={true}
         onPress={this.handleUserSelection.bind(this)}
@@ -35,7 +35,7 @@ export default class GooglePlaces extends React.Component {
             borderBottomWidth:0,
             borderLeftWidth:0,
             borderRightWidth : 0,
-            height : 40.5,
+            height : 25.5,
           },
           textInput : {
             marginTop: 10,
@@ -46,7 +46,7 @@ export default class GooglePlaces extends React.Component {
             paddingBottom: 0,
             paddingLeft: 0,
             paddingRight: 0,
-            height: 20.5,
+            height: 15.5,
             alignItems: 'flex-start',
             fontSize: 16,
           },
