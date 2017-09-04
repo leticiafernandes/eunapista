@@ -14,17 +14,18 @@ export default class TextField extends Component {
     this.props.onChangeText(value);
   }
 
-  handleBlur = () => {
-    console.log(`onBlur => ${value}`);
-    this.props.onBlur(value);
+  handlePlaceHolder = (message) => {
+    this.props.placeholder(message);
   }
 
   render() {
     return (
       <View>
-        <View style={styles.inputBox}>
+        <View style={styles.inputStyle}>
           <TextInput 
-          onChangeText={this.handleChangeText} />
+          underlineColorAndroid="transparent"
+          onChangeText={this.handleChangeText} 
+          />
         </View>
         <View>
           {this.error()}
@@ -35,8 +36,7 @@ export default class TextField extends Component {
 }
 
 const styles = StyleSheet.create({
-  inputBox: {
-    marginTop: 20,
+  inputStyle: {
     borderBottomWidth:0.5,
-  },
+  }
 });

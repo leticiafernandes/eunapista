@@ -50,12 +50,6 @@ export default class Register extends React.Component {
   }
 
   validateRegister = () => {
-    console.log(`entrei1`); 
-    console.log(`name => ${this.state.name}`);
-    console.log(`race_time => ${this.state.race_time}`);
-    console.log(`value => ${this.state.value}`);
-    console.log(`link => ${this.state.link}`);
-    
     const nameError = validate('name', this.state.name);
     const raceTimeError = validate('raceTime', this.state.race_time);
     const raceValueError = validate('raceValue', this.state.value);
@@ -68,10 +62,6 @@ export default class Register extends React.Component {
       raceLinkError: raceLinkError
     })
 
-    console.log(`nameError=> ${nameError}`);
-    console.log(`nameError=> ${raceTimeError}`);
-    console.log(`nameError=> ${raceValueError}`);
-    console.log(`nameError=> ${raceLinkError}`);
     if (!nameError && !raceTimeError && !raceValueError && !raceLinkError) {
       //newEvent();
       alert('Details are valid!');
@@ -97,16 +87,13 @@ export default class Register extends React.Component {
           <Form>
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Nome</Label>
-
               <TextField
               placeholder="Nome da corrida"
-              underlineColorAndroid="transparent"
-              style={styles.marginTop}
               onChangeText={name => this.setState({name: name.trim()})}
               error={this.state.nameError} />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.inputStyle}>
               <Label style={styles.labelText}>Data da corrida</Label>
               <DatePicker
                 date={this.state.start_date}
@@ -130,7 +117,7 @@ export default class Register extends React.Component {
                     fontSize:16,
                     marginLeft: 0,
                     bottom: 0,
-                    marginTop: 20,
+                    marginTop: 10,
                     height: 20.5,
                   },
                   btnTextConfirm: {
@@ -141,7 +128,7 @@ export default class Register extends React.Component {
               />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.inputStyle}>
               <Label style={styles.labelText}>Local de partida</Label>
               <GooglePlaces
                 onPress={(local) => this.setState({start_local: local})}
@@ -153,13 +140,11 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Horário de partida</Label>
               <TextField
               placeholder="00:00"
-              underlineColorAndroid="transparent"
-              style={styles.marginTop}
               onChangeText={race_time => this.setState({race_time: race_time.trim()})}
               error={this.state.raceTimeError} />
             </View>
 
-            <View style={styles.inputBox}>
+            <View style={styles.inputStyle}>
               <Label style={styles.labelText}>Local de chegada</Label>
               <GooglePlaces
                 onPress={(local) => this.setState({finish_local: local})}
@@ -171,8 +156,6 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Valor</Label>
               <TextField
               placeholder="R$ 00,00"
-              underlineColorAndroid="transparent"
-              style={styles.marginTop}
               keyboardType="decimal-pad"
               onChangeText={value => this.setState({value: value.trim()})}
               error={this.state.raceValueError} />
@@ -182,16 +165,12 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Link oficial do evento</Label>
               <TextField
               placeholder="www.meuevento.com"
-              underlineColorAndroid="transparent"
               keyboardType="url"
               onChangeText={link => this.setState({link: link.trim()})}
               error={this.state.raceLinkError} />
             </View>
 
-            <Button rounded danger
-              style={styles.button}
-              onPress={this.validateRegister}>
-              
+            <Button rounded danger style={styles.button} onPress={this.validateRegister}>
               <Text>Criar!</Text>
             </Button>
           </Form>
@@ -202,26 +181,26 @@ export default class Register extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  content: {
-    margin: 10,
-  },
-  labelText : {
-    color : '#4d4d4d'
-  },
-  titleText: {
-    color: '#3f51b5',
-  },
-  inputBox: {
-    marginTop: 20,
-    borderBottomWidth:0.5,
-  },
   button: {
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 20,
     alignSelf: "center",
     backgroundColor: '#3f51b5'
   },
+  content: {
+    margin: 10,
+  },
+  inputStyle: {
+    marginTop: 10,
+    borderBottomWidth:0.5,
+  },
+  labelText : {
+    color : '#4d4d4d'
+  },
   marginTop: {
-    marginTop: 20,
-  }
+    marginTop: 10,
+  },
+  titleText: {
+    color: '#3f51b5',
+  },
 });

@@ -38,7 +38,7 @@ export default class GooglePlaces extends React.Component {
             height : 40.5,
           },
           textInput : {
-            marginTop: 20,
+            marginTop: 10,
             marginBottom : 0,
             marginLeft: 0,
             marginRight: 0,
