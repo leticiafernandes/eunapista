@@ -9,11 +9,22 @@ export default class TextField extends Component {
     return null
   }
 
+  handleChangeText = (value) => {
+    console.log(`changeText => ${value}`)
+    this.props.onChangeText(value);
+  }
+
+  handleBlur = () => {
+    console.log(`onBlur => ${value}`);
+    this.props.onBlur(value);
+  }
+
   render() {
     return (
       <View>
         <View style={styles.inputBox}>
-          <TextInput />
+          <TextInput 
+          onChangeText={this.handleChangeText} />
         </View>
         <View>
           {this.error()}

@@ -50,11 +50,16 @@ export default class Register extends React.Component {
   }
 
   validateRegister = () => {
-    console.log(`entrei1`);
+    console.log(`entrei1`); 
+    console.log(`name => ${this.state.name}`);
+    console.log(`race_time => ${this.state.race_time}`);
+    console.log(`value => ${this.state.value}`);
+    console.log(`link => ${this.state.link}`);
+    
     const nameError = validate('name', this.state.name);
     const raceTimeError = validate('raceTime', this.state.race_time);
     const raceValueError = validate('raceValue', this.state.value);
-    const raceLinkError = validate('raceLink', this.state.value);
+    const raceLinkError = validate('raceLink', this.state.link);
 
     this.setState({
       nameError: nameError,
@@ -97,12 +102,7 @@ export default class Register extends React.Component {
               placeholder="Nome da corrida"
               underlineColorAndroid="transparent"
               style={styles.marginTop}
-              onChangeText={(name) => this.setState({name: value.trim()})}
-              onBlur={() => {
-                this.setState({
-                  nameError: validateRegister('name', this.state.name)
-                })
-              }}
+              onChangeText={name => this.setState({name: name.trim()})}
               error={this.state.nameError} />
             </View>
 
@@ -155,12 +155,7 @@ export default class Register extends React.Component {
               placeholder="00:00"
               underlineColorAndroid="transparent"
               style={styles.marginTop}
-              onChangeText={(race_time) => this.setState({race_time: value.trim()})}
-              onBlur={() => {
-                this.setState({
-                  raceTimeError: validate('raceTime', this.state.race_time)
-                })
-              }}
+              onChangeText={race_time => this.setState({race_time: race_time.trim()})}
               error={this.state.raceTimeError} />
             </View>
 
@@ -179,12 +174,7 @@ export default class Register extends React.Component {
               underlineColorAndroid="transparent"
               style={styles.marginTop}
               keyboardType="decimal-pad"
-              onChangeText={(value) => this.setState({value: value.trim()})}
-              onBlur={() => {
-                this.setState({
-                  raceValueError: validate('raceValue', this.state.value)
-                })
-              }}
+              onChangeText={value => this.setState({value: value.trim()})}
               error={this.state.raceValueError} />
             </View>
 
@@ -194,12 +184,7 @@ export default class Register extends React.Component {
               placeholder="www.meuevento.com"
               underlineColorAndroid="transparent"
               keyboardType="url"
-              onChangeText={(link) => this.setState({link: value.trim()})}
-              onBlur={() => {
-                this.setState({
-                  raceLinkError: validate('raceLink', this.state.link)
-                })
-              }}
+              onChangeText={link => this.setState({link: link.trim()})}
               error={this.state.raceLinkError} />
             </View>
 
