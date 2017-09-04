@@ -99,7 +99,6 @@ export default class Register extends React.Component {
                 date={this.state.start_date}
                 mode="date"
                 androidMode="spinner"
-                placeholder=""
                 format="DD/MM/YYYY"
                 confirmBtnText="OK"
                 cancelBtnText="Cancelar"
@@ -117,8 +116,8 @@ export default class Register extends React.Component {
                     fontSize:16,
                     marginLeft: 0,
                     bottom: 0,
-                    marginTop: 10,
-                    height: 20.5,
+                    marginTop: 0,
+                    height: 15.5,
                   },
                   btnTextConfirm: {
                     color: '#000'
@@ -195,7 +194,8 @@ const styles = StyleSheet.create({
     borderBottomWidth:0.5,
   },
   labelText : {
-    color : '#4d4d4d'
+    color : '#4d4d4d',
+    marginBottom: 10,
   },
   marginTop: {
     marginTop: 10,
