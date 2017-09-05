@@ -86,7 +86,6 @@ export default class Register extends React.Component {
     })
 
     if (!nameError && !raceTimeError && !raceValueError && !raceLinkError) {
-      console.log('campos validos');
       this.newEvent();
     }
   }
