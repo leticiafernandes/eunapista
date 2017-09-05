@@ -15,7 +15,7 @@ export default class Events extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://10.2.8.38:3000/events.json')
+    axios.get('https://eu-na-pista.herokuapp.com/events.json')
     .then(res => {
       this.setState({events: res.data})
     }).catch((error)=>{
