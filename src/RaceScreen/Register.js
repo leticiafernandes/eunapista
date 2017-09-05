@@ -16,26 +16,50 @@ export default class Register extends React.Component {
     this.state = {
       name: '',
       start_date: '',
-      start_local: '',
       race_time: '',
-      finish_local: '',
       value: '',
-      link: ''
+      link: '',
+      start_local: {
+        place_id: '',
+        local_text: '',
+        comp_text: '',
+        lat: 0,
+        lng: 0
+      },
+      finish_local: {
+        place_id: '',
+        local_text: '',
+        comp_text: '',
+        lat: 0,
+        lng: 0
+      }
     };
   }
 
   newEvent(){
-    let url = 'https://eu-na-pista.herokuapp.com/events',
+    let url = 'http://10.2.8.38:3000/events',
         params = {
           name: this.state.name,
           start_date: this.state.start_date,
-          start_local: this.state.start_local,
           race_time: this.state.race_time,
-          finish_local: this.state.finish_local,
           value: this.state.value,
-          link: this.state.link
+          link: this.state.link,
+          start_local: {
+            place_id: this.state.start_local.place_id,
+            local_text: this.state.start_local.local_text,
+            comp_text: this.state.start_local.comp_text,
+            lat: this.state.start_local.lat,
+            lng: this.state.start_local.lng
+          },
+          finish_local: {
+            place_id: this.state.finish_local.place_id,
+            local_text: this.state.finish_local.local_text,
+            comp_text: this.state.finish_local.comp_text,
+            lat: this.state.finish_local.lat,
+            lng: this.state.finish_local.lng
+          }
         };
-
+    console.log(params);
     axios
     .post(url, params)
     .then(response => {
@@ -111,7 +135,17 @@ export default class Register extends React.Component {
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de partida</Label>
               <GooglePlaces
-                onPress={(local) => this.setState({start_local: local})}
+                onPress={(data, details) => {
+                  this.setState({
+                    start_local: {
+                      place_id: details.place_id,
+                      local_text: data.structured_formatting.main_text,
+                      comp_text: data.structured_formatting.secondary_text,
+                      lat: details.geometry.location.lat,
+                      lng: details.geometry.location.lng
+                    }
+                  })
+                }}
                 value={this.state.start_local} 
                 />
             </View>
@@ -129,7 +163,17 @@ export default class Register extends React.Component {
             <View style={styles.inputBox}>
               <Label style={styles.labelText}>Local de chegada</Label>
               <GooglePlaces
-                onPress={(local) => this.setState({finish_local: local})}
+                onPress={(data, details) => {
+                  this.setState({
+                    finish_local: {
+                      place_id: details.place_id,
+                      local_text: data.structured_formatting.main_text,
+                      comp_text: data.structured_formatting.secondary_text,
+                      lat: details.geometry.location.lat,
+                      lng: details.geometry.location.lng
+                    }
+                  })
+                }}
                 value={this.state.finish_local} 
                 />
             </View>
