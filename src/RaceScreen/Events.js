@@ -15,7 +15,7 @@ export default class Events extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://eu-na-pista.herokuapp.com/events.json')
+    axios.get('http://10.2.8.38:3000/events.json')
     .then(res => {
       this.setState({events: res.data})
     }).catch((error)=>{
@@ -36,7 +36,8 @@ export default class Events extends React.Component {
               <Thumbnail size={80} source={require('../../img/running.png')} />
               <Body>
                 <Text>{event.name}</Text>
-                <Text note>{event.start_local.split('-')[0].trim()}</Text> 
+                <Text note>{event.start_local ? event.start_local.local_text : ''}</Text>
+                <Text note>{event.finish_local ? event.finish_local.local_text : ''}</Text>
                 <Button iconRight transparent primary
                   onPress={() => navigate('RaceDetail', { id:event.id })} >
                   <Text>Ver</Text>

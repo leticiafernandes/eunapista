@@ -18,8 +18,9 @@ export default class RaceDetail extends React.Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(`https://eu-na-pista.herokuapp.com/events/${this.props.navigation.state.params.id}.json`)
+    axios.get(`http://10.2.8.38:3000/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
+      console.log(response.data)
       self.setState({race: response.data})
     }).catch((error)=>{
       console.log("Api call error");
@@ -47,7 +48,7 @@ export default class RaceDetail extends React.Component {
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de partida:</Text>
-                  <Text style={styles.textColor}>{this.state.race.start_local}</Text>
+                  <Text style={styles.textColor}>{this.state.race.start_local ? this.state.race.start_local.local_text : ''}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Horário de partida:</Text>
@@ -55,11 +56,11 @@ export default class RaceDetail extends React.Component {
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Local de chegada:</Text>
-                  <Text style={styles.textColor}>{this.state.race.finish_local}</Text>
+                  <Text style={styles.textColor}>{this.state.race.finish_local ? this.state.race.finish_local.local_text : ''}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Valor:</Text>
-                  <Text style={styles.textColor}>{numeral(this.state.race.value).format('0,0')}</Text>
+                  <Text style={styles.textColor}>{numeral(this.state.race.value).format('0,00')}</Text>
                 </View>
                 <View style={styles.marginTop}>
                   <Text style={styles.textTitle, styles.textColor}>Link oficial do evento:</Text>

@@ -9,9 +9,8 @@ export default class GooglePlaces extends React.Component {
     super(props);
   }
 
-  handleUserSelection(value) {
-    console.log(this.props);
-    this.props.onPress(value.description);
+  handleUserSelection = (data, details = null) => {
+    this.props.onPress(data, details);
   }
 
   render() {
@@ -20,7 +19,7 @@ export default class GooglePlaces extends React.Component {
         placeholder=""
         minLength={3}
         fetchDetails={true}
-        onPress={this.handleUserSelection.bind(this)}
+        onPress={this.handleUserSelection}
         getDefaultValue={() => {
           return '';
         }}

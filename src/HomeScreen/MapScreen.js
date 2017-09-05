@@ -7,78 +7,64 @@ const LONGITUDE_DELTA = 0.0421;
 
 export default class Map extends React.Component {
 
-  _centerOnUser = () => {
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            this.map.animateToCoordinate(position.coords)
-        },
-        (error) => {
-            Alert.alert(error.message)
-        },
-        {
-            enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-        }
-    );
-  }
-
-  componentWillMount = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-          this.setState({
-              region: {
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                  latitudeDelta: LATITUDE_DELTA,
-                  longitudeDelta: LONGITUDE_DELTA
-              }
-          });
-          this.map.animateToCoordinate({
-              latitude: this.state.region.latitude,
-              longitude: this.state.region.longitude
-          });
-      },
-      (error) => {
-          console.log(error.message)
-      },
-      {
-          enableHighAccuracy: false,
-          timeout: 20000,
-          maximumAge: 1000
-      }
-    );
-  }
-
-  /*componentDidMount() {
-    this.map.animateToRegion(this.state.region, 100);
-  }*/
-
   constructor(props) {
     super(props);
 
     this.state = {
-      markers: [
-      {
-        key: 1,
-        title: 'Sobre a corrida',
-        coordinates: {
-          latitude: -23.0066023,
-          longitude: -43.3156324,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA
-        }
-      },
-      {
-        key: 2,
-        title: 'Sobre a corrida',
-        coordinates: {
-          latitude: -23.0044297,
-          longitude: -43.3190871,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA
-        }
-      }]
+      markers: []
     }
   }
+
+  _centerOnUser = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+        this.map.animateToCoordinate(position.coords);
+      },
+      error => {
+        Alert.alert(error.message)
+      },
+      {
+        enableHighAccuracy: true, 
+        timeout: 20000, 
+        maximumAge: 1000
+      }
+    );
+  }
+
+  componentWillMount = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        region: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA
+        }
+      });
+
+      this.map.animateToRegion(this.state.region, 1500);
+    },
+    (error) => {
+      console.log(error.message)
+    },
+    {
+      enableHighAccuracy: false,
+      timeout: 20000,
+      maximumAge: 1000
+    }
+    );
+  }
+
+  componentDidMount = () => {
+    // var self = this;
+    // axios.get(`http://10.2.8.38:3000/events.json`)
+    // .then(response => {
+    //   self.setState({race: response.data})
+    // }).catch((error)=>{
+    //   console.log("Api call error");
+    //   alert(error.message);
+    // });
+  }
+
   render() {
     return (
       <MapView style={styles.map}
