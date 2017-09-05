@@ -9,7 +9,7 @@ import validate from "../Util/validate_rules.js";
 
 import DatePicker from "react-native-datepicker";
 import GooglePlaces from "../RaceScreen/GooglePlaces.js";
-import { Container, Body, Content, Header, Form, Title, Input, Item, Label,Card, CardItem, Button, Text } from "native-base";
+import { Container, Body, Button, Card, CardItem, Content, Header, Form, Icon, Input, Item, Label, Text, Title } from "native-base";
 
 export default class Register extends React.Component {
   constructor(props) {
