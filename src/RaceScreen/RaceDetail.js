@@ -1,9 +1,10 @@
 import React from 'react';
 import { Platform, StyleSheet, View } from "react-native";
 
-import { Container, Header, Body, Content, Title, Card, CardItem, Text } from "native-base";
+import { Container, Header, Body, Content, Title, Text, Icon} from "native-base";
 import axios from 'axios';
 import moment from 'moment';
+import 'moment/locale/pt-br';
 import numeral from 'numeral';
 
 export default class RaceDetail extends React.Component {
@@ -18,7 +19,7 @@ export default class RaceDetail extends React.Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(`http://192.168.0.12:3000/events/${this.props.navigation.state.params.id}.json`)
+    axios.get(`https://eu-na-pista.herokuapp.com/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
       console.log(response.data)
       self.setState({race: response.data})
@@ -29,51 +30,57 @@ export default class RaceDetail extends React.Component {
   }
 
   render() {
+    let weekDay = moment(Date(this.state.race.start_date)).locale('pt-br').format('dddd').toUpperCase();
+    let monthDay = moment(Date(this.state.race.start_date)).format('DD');
+    let monthName = moment(Date(this.state.race.start_date)).locale('pt-br').format('MMMM');
+    let year = moment(Date(this.state.race.start_date)).format('YYYY');
+
     return (
-      <Container style={styles.container}>
-        <Content padder>
-          <Card>
-            <CardItem header>
-              <Text style={styles.textColor}>Se liga nos detalhes do evento!</Text>
-            </CardItem>
-            <CardItem>
+    <Content style={styles.container} padder>
               <Body>
+          <View style={{flex: 1, alignItems:'center' , textAlign:'center', marginTop: 20, marginBottom: 20}}>
+            <Text style={{fontSize: 30, fontWeight: 'bold', color: '#3f51b5'}}>{this.state.race.name}</Text>
+            <Text style={{fontSize: 18, color: '#3f51b5'}}>{monthDay} de {monthName}, {year}</Text>
+          </View>
                 <View> 
-                  <Text style={styles.textTitle, styles.textColor}>Nome:</Text>
-                  <Text style={styles.textColor}>{this.state.race.name}</Text>
                 </View>
                 <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Data da corrida:</Text>
-                  <Text style={styles.textColor}>{moment(Date(this.state.race.start_date)).format('DD/MM/YYYY')}</Text>
+            <View style={{flexDirection:'row',flexWrap:'wrap', alignItems: 'center'}}>
+              <Text style={{marginRight: 10}}>Local de partida:</Text>
+              <Icon active name="ios-pin-outline" />
+                </View>
+            <Text>{this.state.race.start_local ? this.state.race.start_local.local_text : ''}</Text>
+          </View>
+                <View style={styles.marginTop}>
+          <View style={{flexDirection:'row',flexWrap:'wrap', alignItems: 'center'}}>
+              <Text style={{marginRight: 10}}>Horário de partida:</Text>
+              <Icon active name="ios-alarm-outline" />
+            </View>
+            <Text>{moment.utc(this.state.race.race_time).format("HH:mm")}</Text>
                 </View>
                 <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Local de partida:</Text>
-                  <Text style={styles.textColor}>{this.state.race.start_local ? this.state.race.start_local.local_text : ''}</Text>
+          <View style={{flexDirection:'row',flexWrap:'wrap', alignItems: 'center'}}>
+              <Text style={{marginRight: 10}}>Local de chegada:</Text>
+              <Icon active name="ios-ribbon-outline" />
+            </View>
+            <Text>{this.state.race.finish_local ? this.state.race.finish_local.local_text : ''}</Text>
                 </View>
                 <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Horário de partida:</Text>
-                  <Text style={styles.textColor}>{moment.utc(this.state.race.race_time).format("HH:mm")}</Text>
+          <View style={{flexDirection:'row',flexWrap:'wrap', alignItems: 'center'}}>
+              <Text style={{marginRight: 10}}>Valor:</Text>
+              <Icon active name="ios-cash-outline" />
+            </View>
+            <Text>{numeral(this.state.race.value).format('0,00')}</Text>
                 </View>
                 <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Local de chegada:</Text>
-                  <Text style={styles.textColor}>{this.state.race.finish_local ? this.state.race.finish_local.local_text : ''}</Text>
+          <View style={{flexDirection:'row',flexWrap:'wrap', alignItems: 'center', marginBottom: 20}}> 
+              <Text style={{marginRight: 10}}>Link oficial do evento:</Text>
+              <Icon active name="ios-link-outline" />
                 </View>
-                <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Valor:</Text>
-                  <Text style={styles.textColor}>{numeral(this.state.race.value).format('0,00')}</Text>
-                </View>
-                <View style={styles.marginTop}>
-                  <Text style={styles.textTitle, styles.textColor}>Link oficial do evento:</Text>
-                  <Text style={styles.textColor}>{this.state.race.link}</Text>
+            <Text>{this.state.race.link}</Text>
                 </View>
               </Body>
-            </CardItem>
-            <CardItem footer>
-              <Text style={styles.textColor}>E ai, vai correr?</Text>
-            </CardItem>
-         </Card> 
         </Content>
-      </Container>
     );
   }
 }
@@ -82,14 +89,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
   },
-  textColor: {
-    color: '#3f51b5',
-  },
-  textTitle: {
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
   marginTop: {
     marginTop: 20,
   },
+  marginBottom: {
+    marginBottom: 20,
+  }
 });
