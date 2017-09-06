@@ -89,6 +89,7 @@ export default class RaceDetail extends React.Component {
             </View>
           </Body>
         </Content>
+      </Container>
     );
   }
 }
