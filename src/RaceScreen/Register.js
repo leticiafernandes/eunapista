@@ -39,7 +39,7 @@ export default class Register extends React.Component {
   }
 
   newEvent = () => {
-    let url = 'https://eu-na-pista.herokuapp.com/events',
+    let url = 'http://192.168.0.12:3000/events',
         params = {
           name: this.state.name,
           start_date: this.state.start_date,

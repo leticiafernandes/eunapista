@@ -18,7 +18,7 @@ export default class RaceDetail extends React.Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(`http://10.2.8.38:3000/events/${this.props.navigation.state.params.id}.json`)
+    axios.get(`http://192.168.0.12:3000/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
       console.log(response.data)
       self.setState({race: response.data})

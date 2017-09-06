@@ -56,7 +56,7 @@ export default class Map extends React.Component {
 
   componentDidMount = () => {
     // var self = this;
-    // axios.get(`http://10.2.8.38:3000/events.json`)
+    // axios.get(`http://192.168.0.12:3000/events.json`)
     // .then(response => {
     //   self.setState({race: response.data})
     // }).catch((error)=>{
