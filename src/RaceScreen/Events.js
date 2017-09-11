@@ -3,6 +3,7 @@ import { AppRegistry, View, StatusBar, StyleSheet, Alert} from "react-native";
 import { Container, Header, Body, Content, Title, List, ListItem, Thumbnail,Button, Text } from "native-base";
 import { StackNavigator } from 'react-navigation';
 import axios from 'axios';
+import AppConfig from '../config';
 
 export default class Events extends React.Component {
 
@@ -15,7 +16,7 @@ export default class Events extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://eu-na-pista.herokuapp.com/events.json')
+    axios.get(`${AppConfig.host}/events.json`)
     .then(res => {
       this.setState({events: res.data})
     }).catch((error)=>{

@@ -6,6 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import numeral from 'numeral';
+import AppConfig from '../config';
 
 export default class RaceDetail extends React.Component {
 
@@ -19,7 +20,7 @@ export default class RaceDetail extends React.Component {
 
   componentDidMount() {
     var self = this;
-    axios.get(`https://eu-na-pista.herokuapp.com/events/${this.props.navigation.state.params.id}.json`)
+    axios.get(`${AppConfig.host}/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
       console.log(response.data)
       self.setState({race: response.data})
