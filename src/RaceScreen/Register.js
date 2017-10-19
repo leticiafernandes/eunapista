@@ -6,6 +6,7 @@ import axios from "axios";
 import TextField from "../Util/TextField.js";
 import validation from "../Util/validation_messages.js";
 import validate from "../Util/validate_rules.js";
+import AppConfig from '../config';
 
 import DatePicker from "react-native-datepicker";
 import GooglePlaces from "../RaceScreen/GooglePlaces.js";
@@ -39,7 +40,7 @@ export default class Register extends React.Component {
   }
 
   newEvent = () => {
-    let url = 'http://192.168.0.12:3000/events',
+    let url = `${AppConfig.host}/events`,
         params = {
           name: this.state.name,
           start_date: this.state.start_date,

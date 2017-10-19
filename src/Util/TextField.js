@@ -10,7 +10,6 @@ export default class TextField extends Component {
   }
 
   handleChangeText = (value) => {
-    console.log(`changeText => ${value}`)
     this.props.onChangeText(value);
   }
 
