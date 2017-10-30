@@ -5,7 +5,7 @@ import axios from 'axios';
 import AppConfig from '../config';
 
 const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = 0.0421;
+const LONGITUDE_DELTA = 0.0421; 
 
 export default class Map extends React.Component {
 
@@ -97,7 +97,7 @@ export default class Map extends React.Component {
           title={marker.title}>
             <MapView.Callout style={styles.plainView}>
               <View>
-                <Text>Nome da corrida</Text>
+                <Text>Corrida no centro</Text>
                 <Text>Clique aqui para mais detalhes!</Text>
               </View>
             </MapView.Callout>
