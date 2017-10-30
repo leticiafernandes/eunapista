@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, StyleSheet, View } from "react-native";
 
-import { Container, Header, Body, Content, Title, Text, Icon, Card} from "native-base";
+import { Container, Header, Body, Content, Title, Text, Icon, Card, Button} from "native-base";
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -81,8 +81,14 @@ export default class RaceDetail extends React.Component {
         </View>
         <View style={styles.marginBottom}></View>
         </Card>
+        <View>
+          <Button rounded danger style={styles.button}>
+            <Text>Quero participar!</Text>
+          </Button>
         </View>
-      </Content>
+        <View style={styles.marginBottom}></View>
+      </View>
+    </Content>
     );
   }
 }
@@ -136,5 +142,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'rgb(63, 81, 181)',
     marginRight: 10,
+  },
+  button: {
+    marginTop: 20,
+    marginBottom: 20,
+    alignSelf: "center",
+    backgroundColor: '#3f51b5',
   },
 });

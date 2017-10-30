@@ -8,6 +8,7 @@ export default class Login extends React.Component {
     super(props);
 
     this.state = {
+      nome: '',
       email: '',
       password: '',
       password_confirmation: ''
@@ -19,6 +20,11 @@ export default class Login extends React.Component {
       <Container>
         <Content style={styles.content} padder>
           <Form>
+            <View style={styles.marginTop}>
+              <Label style={styles.labelText}>Nome</Label>
+              <TextField
+              placeholder="nome" />
+            </View>
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Email</Label>
               <TextField
