@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'native-base';
 import MapView from 'react-native-maps';
 import axios from 'axios';
 import AppConfig from '../config';
 
 const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = 0.0421; 
+const LONGITUDE_DELTA = 0.0421;
 
 export default class Map extends React.Component {
 
@@ -25,8 +26,8 @@ export default class Map extends React.Component {
         Alert.alert(error.message)
       },
       {
-        enableHighAccuracy: true, 
-        timeout: 20000, 
+        enableHighAccuracy: true,
+        timeout: 20000,
         maximumAge: 1000
       }
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 
-import axios from "axios"; 
+import axios from "axios";
 
 import TextField from "../Util/TextField.js";
 import validation from "../Util/validation_messages.js";
@@ -164,7 +164,7 @@ export default class Register extends React.Component {
                     }
                   })
                 }}
-                value={this.state.start_local} 
+                value={this.state.start_local}
                 />
             </View>
 
@@ -190,7 +190,7 @@ export default class Register extends React.Component {
                     }
                   })
                 }}
-                value={this.state.finish_local} 
+                value={this.state.finish_local}
                 />
             </View>
 
@@ -198,7 +198,7 @@ export default class Register extends React.Component {
               <Label style={styles.labelText}>Valor</Label>
               <TextField
               placeholder="R$ 00,00"
-                keyboardType="decimal-pad"
+              keyboardType="decimal-pad"
               onChangeText={value => this.setState({value: value.trim()})}
               error={this.state.raceValueError} />
             </View>

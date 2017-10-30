@@ -8,6 +8,7 @@ import RaceCalendar from "../RaceScreen/RaceCalendar.js";
 import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
 import RaceDetail from "../RaceScreen/RaceDetail.js";
+import Login from "../RaceScreen/Login.js";
 
 const EventNavigator = StackNavigator({
   HomeEvents: { screen: Events },
@@ -19,7 +20,8 @@ export default (MainScreenNavigator = TabNavigator(
     Map: { screen: Map },
     RaceCalendar: { screen: RaceCalendar },
     Events: { screen: EventNavigator },
-    Register: { screen: Register }
+    Register: { screen: Register },
+    Login: { screen: Login }
   },
   {
     tabBarPosition: "bottom",
@@ -54,6 +56,12 @@ export default (MainScreenNavigator = TabNavigator(
               onPress={() => props.navigation.navigate("Register")}>
               <Icon name="md-add" color={'#fff'} />
               <Text style={styles.menuText}>Cadastro</Text>
+            </Button>
+            <Button
+              vertical
+              active={props.navigationState.index === 4}
+              onPress={() => props.navigation.navigate("Login")}>
+              <Text style={styles.menuText}>Login</Text>
             </Button>
           </FooterTab>
         </Footer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
-import { Container, Header, Body, Content, Title } from "native-base";
+import { Container, Header, Body, Content, Title } from 'native-base';
 
 export default class RaceCalendar extends React.Component {
   render() {
