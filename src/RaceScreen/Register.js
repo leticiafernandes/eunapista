@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     alignSelf: "center",
-    backgroundColor: '#3f51b5'
+    backgroundColor: AppConfig.primaryColor,
   },
   content: {
     margin: 10,
@@ -244,6 +244,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titleText: {
-    color: '#3f51b5',
+    color: AppConfig.primaryColor,
   },
 });

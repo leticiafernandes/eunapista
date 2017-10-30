@@ -9,10 +9,12 @@ import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
 import RaceDetail from "../RaceScreen/RaceDetail.js";
 import Login from "../RaceScreen/Login.js";
+import Profile from "../RaceScreen/Profile.js";
 
 const EventNavigator = StackNavigator({
   HomeEvents: { screen: Events },
   RaceDetail: { screen: RaceDetail },
+  Profile: { screen: Profile },
 });
 
 export default (MainScreenNavigator = TabNavigator(

@@ -28,7 +28,7 @@ exports.baseFont = 'Hero';
 exports.baseFontSize = 14;
 
 // Colors
-exports.primaryColor = "#DA4D43";
+exports.primaryColor = "#3f51b5";
 exports.secondaryColor = "#FFE229";
 exports.textColor = "#555";
 exports.borderColor = "#606060";

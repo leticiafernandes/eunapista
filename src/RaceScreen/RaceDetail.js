@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#3f51b5',
+    color: AppConfig.primaryColor,
   },
   subtitle: {
     fontSize: 18,
-    color: '#3f51b5',
+    color: AppConfig.primaryColor,
   },
   card: {
     alignItems:'center',
@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   text1: {
-    color: '#3f51b5',
+    color: AppConfig.primaryColor,
     textAlign: 'center',
   },
   text2: {
     marginRight: 10,
     fontSize: 14,
-    color: '#3f51b5',
+    color: AppConfig.primaryColor,
     fontWeight: 'bold',
   },
   icon: {
@@ -147,6 +147,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     alignSelf: "center",
-    backgroundColor: '#3f51b5',
+    backgroundColor: AppConfig.primaryColor,
   },
 });

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Container, Header, Body, Content, Title, Form, Label, Button } from 'native-base';
 import TextField from '../Util/TextField.js';
+import { StackNavigator } from 'react-navigation';
+import AppConfig from '../config';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -16,6 +18,8 @@ export default class Login extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <Container>
         <Content style={styles.content} padder>
@@ -43,6 +47,9 @@ export default class Login extends React.Component {
             <Button rounded danger style={styles.button} >
               <Text style={styles.buttonText}>Cadastrar</Text>
             </Button>
+            <Button rounded danger style={styles.button} onPress={() => navigate('Profile')}>
+              <Text>perfil</Text>
+            </Button>
           </Form>
         </Content>
       </Container>
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     alignSelf: "center",
-    backgroundColor: '#3f51b5',
+    backgroundColor: AppConfig.primaryColor,
   },
   buttonText: {
     fontSize: 16,
