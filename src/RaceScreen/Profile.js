@@ -12,11 +12,12 @@ export default class Profile extends React.Component {
       <Container style={styles.container}>
         <Content padder>
           <View style={styles.personalData}>
-            <Thumbnail large source={require('../../img/man.png')} />
+            <Thumbnail large source={require('../../img/running.png')} />
             <Text style={styles.text1}>Olá, Pedro!</Text>
+            <Text style={styles.text4}>pedro01@email.com</Text>
           </View>
           <View style={styles.checkIn1}>
-            <Text>2</Text>
+            <Text></Text>
           </View>
           <View style={styles.checkIn2}>
             <Text style={styles.text3}>Corridas que fez check-in:</Text>
@@ -47,19 +48,39 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   personalData: {
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 150,
   },
   checkIn1: {
-    backgroundColor: 'blue',
+    borderColor: AppConfig.primaryColor,
+    borderBottomWidth: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
   },
   text1: {
     fontSize: 20,
-    marginTop: 10,
-    marginBottom: 10,
     color: AppConfig.primaryColor,
+    marginTop: 20,
   },
   text2: {
     fontSize: 16,
     color: AppConfig.primaryColor,
+  },
+  text3: {
+    fontSize: 16,
+    color: AppConfig.primaryColor,
+    marginLeft: 20,
+    marginBottom: 10,
+  },
+  text4: {
+    fontSize: 13,
+    color: AppConfig.primaryColor,
+    marginTop: 10,
+  },
+  listItem: {
+    marginLeft: 20,
+    marginRight: 20,
   },
 });
