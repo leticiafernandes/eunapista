@@ -129,6 +129,7 @@ export default class Register extends React.Component {
                   dateInput: {
                     borderWidth: 0,
                     borderBottomWidth: 0,
+                    borderColor: AppConfig.primaryColor,
                     padding: 0,
                     alignItems: 'flex-start'
                   },
@@ -141,6 +142,7 @@ export default class Register extends React.Component {
                     bottom: 0,
                     marginTop: 20,
                     height: 20.5,
+                    color: AppConfig.primaryColor,
                   },
                   btnTextConfirm: {
                     color: '#000'
@@ -235,10 +237,12 @@ const styles = StyleSheet.create({
   inputStyle: {
     marginTop: 10,
     borderBottomWidth:0.5,
+    borderColor: AppConfig.primaryColor,
   },
   labelText : {
     color : '#4d4d4d',
     marginBottom: 10,
+    color: AppConfig.primaryColor,
   },
   marginTop: {
     marginTop: 10,

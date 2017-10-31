@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet} from "react-native";
+import AppConfig from '../config';
 
-export default class TextField extends Component {  
+export default class TextField extends Component {
   error() {
     if (this.props.error) {
       return <Text style={{color: 'red'}}>{this.props.error}</Text>
@@ -21,14 +22,14 @@ export default class TextField extends Component {
     return (
       <View>
         <View style={styles.inputStyle}>
-          <TextInput 
+          <TextInput
           underlineColorAndroid="transparent"
-          onChangeText={this.handleChangeText} 
+          onChangeText={this.handleChangeText}
           />
         </View>
         <View>
           {this.error()}
-        </View> 
+        </View>
       </View>
     )
   }
@@ -37,5 +38,6 @@ export default class TextField extends Component {
 const styles = StyleSheet.create({
   inputStyle: {
     borderBottomWidth:0.5,
+    borderColor: AppConfig.primaryColor,
   }
 });

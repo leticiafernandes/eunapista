@@ -4,17 +4,25 @@ import { Container, Header, Content, List, ListItem, Text, Button, Thumbnail, Le
 import AppConfig from '../config';
 
 export default class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: 'Pedro',
+      email: 'pedro01@email.com'
+    };
+  }
 
   render() {
-    var items = [ 'Golden Run 21km','Do Leme ao Pontal','Corrida 10km','Corrida 5km'];
+    var race_name = [ 'Golden Run 21km','Do Leme ao Pontal','Corrida 10km','Corrida 5km'];
 
     return (
       <Container style={styles.container}>
         <Content padder>
           <View style={styles.personalData}>
             <Thumbnail large source={require('../../img/running.png')} />
-            <Text style={styles.text1}>Olá, Pedro!</Text>
-            <Text style={styles.text4}>pedro01@email.com</Text>
+            <Text style={styles.text1}>Olá, {this.state.name}!</Text>
+            <Text style={styles.text4}>{this.state.email}</Text>
           </View>
           <View style={styles.checkIn1}>
             <Text></Text>
@@ -22,13 +30,13 @@ export default class Profile extends React.Component {
           <View style={styles.checkIn2}>
             <Text style={styles.text3}>Corridas que fez check-in:</Text>
             <List
-              dataArray={items}
+              dataArray={race_name}
               removeClippedSubviews={false}
               renderRow={(item) =>
-                <ListItem
+                <ListItem icon
                   style={styles.listItem}>
                   <Left>
-                    <Text style={styles.text2}>10km</Text>
+                    <Icon name="ios-checkmark-circle-outline" style={styles.icon} />
                   </Left>
                   <Body>
                     <Text style={styles.text2}>{item}</Text>
@@ -50,14 +58,13 @@ const styles = StyleSheet.create({
   personalData: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 150,
+    height: 130,
+    marginTop: 20,
   },
   checkIn1: {
     borderColor: AppConfig.primaryColor,
     borderBottomWidth: 1,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
+    margin: 20,
   },
   text1: {
     fontSize: 20,
@@ -75,12 +82,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text4: {
-    fontSize: 13,
+    fontSize: 12,
     color: AppConfig.primaryColor,
     marginTop: 10,
   },
   listItem: {
     marginLeft: 20,
     marginRight: 20,
+  },
+  icon: {
+    fontSize: 20,
+    color: 'rgb(63, 81, 181)',
   },
 });
