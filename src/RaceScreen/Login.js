@@ -29,11 +29,6 @@ export default class Login extends React.Component {
           </View>
           <Form>
             <View style={styles.marginTop}>
-              <Label style={styles.labelText}>Nome</Label>
-              <TextField
-              placeholder="nome" />
-            </View>
-            <View style={styles.marginTop}>
               <Label style={styles.labelText}>Email</Label>
               <TextField
               placeholder="email" />
