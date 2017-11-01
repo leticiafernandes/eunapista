@@ -8,13 +8,11 @@ import RaceCalendar from "../RaceScreen/RaceCalendar.js";
 import Events from "../RaceScreen/Events.js";
 import Register from "../RaceScreen/Register.js";
 import RaceDetail from "../RaceScreen/RaceDetail.js";
-import Login from "../RaceScreen/Login.js";
 import Profile from "../RaceScreen/Profile.js";
 
 const EventNavigator = StackNavigator({
   HomeEvents: { screen: Events },
   RaceDetail: { screen: RaceDetail },
-  Profile: { screen: Profile },
 });
 
 export default (MainScreenNavigator = TabNavigator(
@@ -23,7 +21,7 @@ export default (MainScreenNavigator = TabNavigator(
     RaceCalendar: { screen: RaceCalendar },
     Events: { screen: EventNavigator },
     Register: { screen: Register },
-    Login: { screen: Login }
+    Profile: { screen: Profile }
   },
   {
     tabBarPosition: "bottom",
@@ -58,7 +56,7 @@ export default (MainScreenNavigator = TabNavigator(
             <Button
               vertical
               active={props.navigationState.index === 4}
-              onPress={() => props.navigation.navigate("Login")}>
+              onPress={() => props.navigation.navigate("Profile")}>
               <Icon name="ios-contact" style={styles.icon} />
             </Button>
           </FooterTab>
