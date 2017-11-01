@@ -38,7 +38,7 @@ export default class Profile extends React.Component {
                   <Left>
                     <Icon name="ios-checkmark-circle-outline" style={styles.icon} />
                   </Left>
-                  <Body>
+                  <Body style={styles.noBorder}>
                     <Text style={styles.text2}>{item}</Text>
                   </Body>
                 </ListItem>
@@ -93,5 +93,8 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 20,
     color: 'rgb(63, 81, 181)',
+  },
+  noBorder: {
+    borderBottomWidth: 0,
   },
 });
