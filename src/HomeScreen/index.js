@@ -35,35 +35,31 @@ export default (MainScreenNavigator = TabNavigator(
               vertical
               active={props.navigationState.index === 0}
               onPress={() => props.navigation.navigate("Map")}>
-              <Icon name="ios-map-outline" />
-              <Text style={styles.menuText}>Mapa</Text>
+              <Icon name="ios-map" style={styles.icon} />
             </Button>
             <Button
               vertical
               active={props.navigationState.index === 1}
               onPress={() => props.navigation.navigate("RaceCalendar")}>
-              <Icon name="ios-calendar-outline" />
-              <Text style={styles.menuText}>Calendário</Text>
+              <Icon name="md-calendar" style={styles.icon} />
             </Button>
             <Button
               vertical
               active={props.navigationState.index === 2}
               onPress={() => props.navigation.navigate("Events")}>
-              <Icon name="ios-walk" color={'#fff'} />
-              <Text style={styles.menuText}>Corridas</Text>
+              <Icon name="md-medal" style={styles.icon} />
             </Button>
             <Button
               vertical
               active={props.navigationState.index === 3}
               onPress={() => props.navigation.navigate("Register")}>
-              <Icon name="md-add" color={'#fff'} />
-              <Text style={styles.menuText}>Cadastro</Text>
+              <Icon name="md-add" style={styles.icon} />
             </Button>
             <Button
               vertical
               active={props.navigationState.index === 4}
               onPress={() => props.navigation.navigate("Login")}>
-              <Text style={styles.menuText}>Login</Text>
+              <Icon name="ios-contact" style={styles.icon} />
             </Button>
           </FooterTab>
         </Footer>
@@ -74,6 +70,10 @@ export default (MainScreenNavigator = TabNavigator(
 
 const styles = StyleSheet.create({
   menuText: {
-    fontSize: (Platform.OS === 'ios') ? 12 : 8,
-  }
+    fontSize: (Platform.OS === 'ios') ? 10 : 6,
+  },
+  icon: {
+    fontSize: 25,
+    color: 'rgb(63, 81, 181)',
+  },
 });
