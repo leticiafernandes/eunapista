@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, View, StatusBar, StyleSheet, Alert, BackAndroid} from 'react-native';
+import { AppRegistry, View, StatusBar, StyleSheet, Alert, BackAndroid, BackHandler} from 'react-native';
 import { Container, Header, Content, List, ListItem, Text, Button, Thumbnail, Left, Body, Icon } from 'native-base';
 import AppConfig from '../config';
 import Session from "../Util/Session.js";
@@ -16,6 +16,7 @@ export default class Profile extends React.Component {
   logout = () => {
     Session.removeItem("@login");
     BackAndroid.exitApp();
+    BackHandler.exitApp();
   }
 
   render() {
