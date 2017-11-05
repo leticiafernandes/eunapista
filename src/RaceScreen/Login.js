@@ -6,6 +6,7 @@ import AppConfig from '../config';
 import validate from "../Util/validate_rules.js";
 import axios from "axios";
 import HomeScreen from "../HomeScreen/index.js";
+import Session from "../Util/Session.js";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -73,7 +74,8 @@ export default class Login extends React.Component {
         component: (
           <HomeScreen />
         )
-      })
+      });
+      Session.setItem("@login", "sucesso");
       console.log('Sucesso!');
     })
     .catch(error => {

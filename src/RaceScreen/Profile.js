@@ -1,16 +1,21 @@
 import React from 'react';
-import { AppRegistry, View, StatusBar, StyleSheet, Alert} from 'react-native';
+import { AppRegistry, View, StatusBar, StyleSheet, Alert, BackAndroid} from 'react-native';
 import { Container, Header, Content, List, ListItem, Text, Button, Thumbnail, Left, Body, Icon } from 'native-base';
 import AppConfig from '../config';
+import Session from "../Util/Session.js";
 
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: 'Pedro',
       email: 'pedro01@email.com'
     };
+  }
+
+  logout = () => {
+    Session.removeItem("@login");
+    BackAndroid.exitApp();
   }
 
   render() {
@@ -21,8 +26,11 @@ export default class Profile extends React.Component {
         <Content padder>
           <View style={styles.personalData}>
             <Thumbnail large source={require('../../img/running.png')} />
-            <Text style={styles.text1}>Olá, {this.state.name}!</Text>
+            <Text style={styles.text1}>Olá!</Text>
             <Text style={styles.text4}>{this.state.email}</Text>
+            <Button rounded danger style={styles.button} onPress={() => this.logout() }>
+              <Text style={styles.buttonText}>sair</Text>
+            </Button>
           </View>
           <View style={styles.checkIn1}>
             <Text></Text>
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
   personalData: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 130,
+    height: 210,
     marginTop: 20,
   },
   checkIn1: {
@@ -96,5 +104,14 @@ const styles = StyleSheet.create({
   },
   noBorder: {
     borderBottomWidth: 0,
+  },
+  button: {
+    marginTop: 10,
+    alignSelf: "center",
+    backgroundColor: AppConfig.primaryColor,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#FFF',
   },
 });
