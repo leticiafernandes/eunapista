@@ -5,6 +5,7 @@ import TextField from '../Util/TextField.js';
 import AppConfig from '../config';
 import validate from "../Util/validate_rules.js";
 import axios from "axios";
+import HomeScreen from "./src/HomeScreen/index.js";
 
 export default class Login extends React.Component {
   constructor(props) {
