@@ -69,7 +69,6 @@ export default class Login extends React.Component {
     axios
     .post(url, params)
     .then(response => {
-
       this.setState({
         component: (
           <HomeScreen />
@@ -102,7 +101,6 @@ export default class Login extends React.Component {
         { this.state.component }
       </Container>
     );
-    console.log('fim')
   }
 }
 const styles = StyleSheet.create({
