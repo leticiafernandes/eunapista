@@ -18,44 +18,9 @@ export default class Login extends React.Component {
     };
   }
 
-  newUser = () => {
-    let url = `${AppConfig.host}/user_registration`,
-        params = {
-          email: this.state.email,
-          password: this.state.password,
-          password_confirmation: this.state.password_confirmation
-        };
-    console.log(url);
-    console.log(this.state.email);
-    console.log(this.state.password);
-    console.log(this.state.password_confirmation);
-    axios
-    .post(url, params)
-    .then(response => {
-      console.log('Sucesso!');
-    })
-    .catch(error => {
-      console.log(`Error: ${error}`);
-    });
-  }
-
-  validateRegister = () => {
-    const emailError = validate('email', this.state.email);
-    const passwordError = validate('password', this.state.password);
-
+  componentWillMount = () => {
     this.setState({
-      emailError: emailError,
-      passwordError: passwordError
-    })
-
-    if (!emailError && !passwordError) {
-      this.newUser();
-    }
-  }
-
-  render() {
-    return (
-      <Container>
+      component: (
         <Content style={styles.content} padder>
           <View style={styles.logoBox}>
             <Thumbnail large source={require('../../img/running.png')} />
@@ -86,6 +51,55 @@ export default class Login extends React.Component {
             </Button>
           </Form>
         </Content>
+      )
+    })
+  }
+
+  newUser = () => {
+    let url = `${AppConfig.host}/user_registration`,
+        params = {
+          email: this.state.email,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+        };
+    console.log(url);
+    console.log(this.state.email);
+    console.log(this.state.password);
+    console.log(this.state.password_confirmation);
+    axios
+    .post(url, params)
+    .then(response => {
+
+      this.setState({
+        component: (
+          <HomeScreen />
+        )
+      })
+      console.log('Sucesso!');
+    })
+    .catch(error => {
+      console.log(`Error: ${error}`);
+    });
+  }
+
+  validateRegister = () => {
+    const emailError = validate('email', this.state.email);
+    const passwordError = validate('password', this.state.password);
+
+    this.setState({
+      emailError: emailError,
+      passwordError: passwordError
+    })
+
+    if (!emailError && !passwordError) {
+      this.newUser();
+    }
+  }
+
+  render() {
+    return (
+      <Container>
+        { this.state.component }
       </Container>
     );
     console.log('fim')
