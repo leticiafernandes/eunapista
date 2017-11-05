@@ -20,7 +20,7 @@ const validation = {
       format: {
         pattern: "^[-+]?([0-9]*\.[0-9]+|[0-9]+)",
         message: "^Formato incorreto. Exemplo: 100,00"
-      }  
+      }
     },
     raceLink: {
       presence: {
@@ -29,6 +29,16 @@ const validation = {
       format: {
         pattern: "^([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$",
         message: "^Formato incorreto. Exemplo: www.evento.com"
+      }
+    },
+    email: {
+      presence: {
+        message: '^Campo obrigatório.'
+      }
+    },
+    password: {
+      presence: {
+        message: '^Campo obrigatório.'
       }
     }
   }

@@ -35,4 +35,4 @@ exports.borderColor = "#606060";
 exports.defaultColor = "#DA4D43";
 
 exports.s3 = "http://s3-sa-east-1.amazonaws.com/eu-na-pista/"
-exports.host = "https://eu-na-pista.herokuapp.com"
+exports.host = "http://localhost:3000"

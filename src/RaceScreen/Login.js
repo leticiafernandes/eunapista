@@ -2,24 +2,57 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Container, Header, Body, Content, Title, Form, Label, Button, Thumbnail } from 'native-base';
 import TextField from '../Util/TextField.js';
-import { StackNavigator } from 'react-navigation';
 import AppConfig from '../config';
+import validate from "../Util/validate_rules.js";
+import axios from "axios";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      nome: '',
       email: '',
       password: '',
       password_confirmation: ''
     };
   }
 
-  render() {
-    const { navigate } = this.props.navigation;
+  newUser = () => {
+    let url = `${AppConfig.host}/user_registration`,
+        params = {
+          email: this.state.email,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+        };
+    console.log(url);
+    console.log(this.state.email);
+    console.log(this.state.password);
+    console.log(this.state.password_confirmation);
+    axios
+    .post(url, params)
+    .then(response => {
+      console.log('Sucesso!');
+    })
+    .catch(error => {
+      console.log(`Error: ${error}`);
+    });
+  }
 
+  validateRegister = () => {
+    const emailError = validate('email', this.state.email);
+    const passwordError = validate('password', this.state.password);
+
+    this.setState({
+      emailError: emailError,
+      passwordError: passwordError
+    })
+
+    if (!emailError && !passwordError) {
+      this.newUser();
+    }
+  }
+
+  render() {
     return (
       <Container>
         <Content style={styles.content} padder>
@@ -31,28 +64,30 @@ export default class Login extends React.Component {
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Email</Label>
               <TextField
-              placeholder="email" />
+              placeholder="email"
+              onChangeText={email => this.setState({email: email.trim()})}
+              error={this.state.emailError} />
             </View>
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Senha</Label>
               <TextField
-              placeholder="senha" />
+              placeholder="senha"
+              onChangeText={password => this.setState({password: password.trim()})} />
             </View>
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Confirme sua senha</Label>
               <TextField
-              placeholder="confirme sua senha" />
+              placeholder="senha"
+              onChangeText={password_confirmation => this.setState({password_confirmation: password_confirmation.trim()})} />
             </View>
-            <Button rounded danger style={styles.button} >
+            <Button rounded danger style={styles.button} onPress={this.validateRegister}>
               <Text style={styles.buttonText}>Cadastrar</Text>
-            </Button>
-            <Button rounded danger style={styles.button} onPress={() => navigate('Profile')}>
-              <Text>perfil</Text>
             </Button>
           </Form>
         </Content>
       </Container>
     );
+    console.log('fim')
   }
 }
 const styles = StyleSheet.create({
