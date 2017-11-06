@@ -81,12 +81,10 @@ export default class Login extends React.Component {
   loginUser = () => {
     let url = `${AppConfig.host}/login`,
         params = {
-          email: this.state.email,
-          password: this.state.password
+          email: this.state.email
         };
     console.log(url);
     console.log(this.state.email);
-    console.log(this.state.password);
     axios
     .post(url, params)
     .then(response => {
