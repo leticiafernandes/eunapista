@@ -14,6 +14,7 @@ export default class Profile extends React.Component {
   }
 
   logout = () => {
+    console.log('entrei logout');
     Session.removeItem("@login");
     BackAndroid.exitApp();
     BackHandler.exitApp();

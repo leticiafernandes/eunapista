@@ -98,7 +98,6 @@ export default class Map extends React.Component {
           title={marker.title}>
             <MapView.Callout style={styles.plainView}>
               <View>
-                <Text>Corrida no centro</Text>
                 <Text>Clique aqui para mais detalhes!</Text>
               </View>
             </MapView.Callout>

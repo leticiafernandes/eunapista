@@ -7,9 +7,8 @@ import validate from "../Util/validate_rules.js";
 import axios from "axios";
 import HomeScreen from "../HomeScreen/index.js";
 import Session from "../Util/Session.js";
-import RegisterUser from "../RaceScreen/RegisterUser.js";
 
-export default class Login extends React.Component {
+export default class RegisterUser extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +20,7 @@ export default class Login extends React.Component {
   }
 
   /****************************************************************
-  **                     login                                   **
+  **                       will mount                            **
   *****************************************************************/
   componentWillMount = () => {
     this.setState({
@@ -43,14 +42,16 @@ export default class Login extends React.Component {
               <Label style={styles.labelText}>Senha</Label>
               <TextField
               placeholder="senha"
-              onChangeText={password => this.setState({password: password.trim()})}
-              error={this.state.passwordError} />
+              onChangeText={password => this.setState({password: password.trim()})} />
             </View>
-            <Button rounded danger style={styles.button} onPress={this.validateLogin}>
-              <Text style={styles.buttonText}>Entrar</Text>
-            </Button>
-            <Button rounded danger style={styles.button} onPress={this.registrateUserComponent}>
-              <Text style={styles.buttonText}>Novo aqui ?</Text>
+            <View style={styles.marginTop}>
+              <Label style={styles.labelText}>Confirme sua senha</Label>
+              <TextField
+              placeholder="senha"
+              onChangeText={password_confirmation => this.setState({password_confirmation: password_confirmation.trim()})} />
+            </View>
+            <Button rounded danger style={styles.button} onPress={this.validateRegister}>
+              <Text style={styles.buttonText}>Cadastrar</Text>
             </Button>
           </Form>
         </Content>
@@ -58,7 +59,10 @@ export default class Login extends React.Component {
     });
   }
 
-  validateLogin = () => {
+  /****************************************************************
+  **                       validate                              **
+  *****************************************************************/
+  validateRegister = () => {
     const emailError = validate('email', this.state.email);
     const passwordError = validate('password', this.state.password);
 
@@ -74,19 +78,24 @@ export default class Login extends React.Component {
     console.log('passwordError2 => '+this.state.passwordError);
 
     if (!emailError && !passwordError) {
-      this.loginUser();
+      this.newUser();
     }
   }
 
-  loginUser = () => {
-    let url = `${AppConfig.host}/login`,
+  /****************************************************************
+  **                  function new                               **
+  *****************************************************************/
+  newUser = () => {
+    let url = `${AppConfig.host}/user_registration`,
         params = {
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
         };
     console.log(url);
     console.log(this.state.email);
     console.log(this.state.password);
+    console.log(this.state.password_confirmation);
     axios
     .post(url, params)
     .then(response => {
@@ -105,17 +114,6 @@ export default class Login extends React.Component {
   }
 
   /****************************************************************
-  **                     register                                **
-  *****************************************************************/
-  registrateUserComponent = () => {
-    this.setState({
-      component: (
-        <RegisterUser />
-      )
-    });
-  }
-
-  /****************************************************************
   **                  render component                           **
   *****************************************************************/
   render() {
@@ -130,7 +128,6 @@ export default class Login extends React.Component {
 /****************************************************************
 **                     style                                   **
 *****************************************************************/
-
 
 const styles = StyleSheet.create({
   logoBox: {
