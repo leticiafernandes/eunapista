@@ -14,6 +14,7 @@ export default class Map extends React.Component {
     super(props);
 
     this.state = {
+      event: null,
       markers: []
     }
   }
@@ -59,9 +60,11 @@ export default class Map extends React.Component {
       let markers = [];
       response
         .data
-        .map(event => event.start_local)
-        .map(local => {
+        .map(event => event)
+        .map(event => {
+          let local = event.start_local
           markers.push({
+            event: event,
             key: local.id,
             title: local.local_text,
             coordinates: {
@@ -85,6 +88,7 @@ export default class Map extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <MapView style={styles.map}
       showsUserLocation={true}
@@ -98,7 +102,10 @@ export default class Map extends React.Component {
           title={marker.title}>
             <MapView.Callout style={styles.plainView}>
               <View>
-                <Text>Clique aqui para mais detalhes!</Text>
+                <Text
+                onPress={() => navigate('RaceDetail', { id: marker.event.id })}>{marker.event.name}</Text>
+                  <Text
+                  onPress={() => navigate('RaceDetail', { id: marker.event.id })}>Clique para mais detalhes</Text>
               </View>
             </MapView.Callout>
           </MapView.Marker>
