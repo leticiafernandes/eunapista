@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 25,
-    color: 'rgb(63, 81, 181)',
+    color: (Platform.OS === 'ios') ? 'rgb(63, 81, 181)' : '#fff',
   },
 });

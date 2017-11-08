@@ -15,7 +15,7 @@ export default class Events extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get(`${AppConfig.host}/events.json`)
     .then(res => {
       this.setState({events: res.data})

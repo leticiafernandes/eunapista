@@ -12,8 +12,35 @@ export default class RaceCalendar extends React.Component {
     super(props);
 
     this.state = {
-      markedDates: []
+      selected: '',
+      markedDates: [],
+      event_names: []
     }
+
+    this.onDayPress = this.onDayPress.bind(this);
+  }
+
+  onDayPress(day) {
+    console.log(day);
+
+    this.setState({
+      selected: day.dateString
+    });
+
+    axios.get(`${AppConfig.host}/find_by_date?start_date=${day.dateString}`)
+    .then(response => {
+      let events = response.data,
+          event_names = [];
+      events.map((event) => {
+          event_names.push(event.name)
+      })
+      this.setState({
+        event_names
+      })
+    }).catch((error)=>{
+      console.log("Api call error");
+      alert(error.message);
+    });
   }
 
   componentWillMount = () => {
@@ -47,8 +74,6 @@ export default class RaceCalendar extends React.Component {
 
     LocaleConfig.defaultLocale = 'br';
 
-    var race_name = [ 'Golden Run 21km','Do Leme ao Pontal','Corrida 10km','Corrida 5km'];
-
     return (
       <Container>
         <Header>
@@ -58,28 +83,22 @@ export default class RaceCalendar extends React.Component {
         </Header>
         <Content padder>
           <Calendar
-            onDayPress={(day) => {console.log('selected day', day)}}
+            onDayPress={this.onDayPress}
             monthFormat={'MMMM'}
             onMonthChange={(month) => {console.log('month changed', month)}}
             hideExtraDays={true}
-            firstDay={1}
-            markedDates={
-              this.state.markedDates.map(markedDate => {
-                `'${markedDate.date}':{marked:true},`
-                console.log(`'${markedDate.date}':{marked:true},`);
-              })
-            }
+            markedDates={{[this.state.selected]: {selected: true}}}
             theme={{
               textSectionTitleColor: AppConfig.primaryColor,
               arrowColor: AppConfig.primaryColor,
               monthTextColor: AppConfig.primaryColor,
-              selectedDayBackgroundColor: '#dasdsa',
-              selectedDayTextColor: '#f0f0f0'
+              selectedDayBackgroundColor: AppConfig.primaryColor,
+              selectedDayTextColor: '#fff'
             }}
           />
           <View style={styles.box1}>
             <List
-              dataArray={race_name}
+              dataArray={this.state.event_names}
               removeClippedSubviews={false}
               renderRow={(item) =>
                 <ListItem icon
