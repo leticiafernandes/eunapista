@@ -14,7 +14,9 @@ export default class RaceDetail extends React.Component {
     super(props);
 
     this.state = {
-      race: {}
+      race: {},
+      buttonMsg: 'Adicionar a minha lista',
+      bgColor: AppConfig.primaryColor
     };
   }
 
@@ -25,7 +27,44 @@ export default class RaceDetail extends React.Component {
       console.log(response.data)
       self.setState({race: response.data})
     }).catch((error)=>{
-      console.log("Api call error");
+      console.log("api call error - busca json event");
+      alert(error.message);
+    });
+  }
+
+  checkInEvent = (user_id,event_id) => {
+    console.log(user_id);
+    console.log(event_id);
+
+    let params = {
+      user_id,
+      event_id
+    };
+
+    axios.post(`${AppConfig.host}/check_in`,params)
+    .then(response => {
+      console.log(`msg => ${response.data} // status=> ${response.status}`);
+
+      let status = response.status;
+
+      switch (status) {
+        case 200:
+          // destroyed
+          this.setState({
+            buttonMsg: 'Adicionar a minha lista',
+            bgColor: AppConfig.primaryColor
+          });
+          break;
+        case 201:
+          // created
+          this.setState({
+            buttonMsg: 'Remover da minha lista',
+            bgColor: AppConfig.disabledColor
+          });
+          break;
+      }
+    }).catch((error)=>{
+      console.log(`api call error - ${error.data}`);
       alert(error.message);
     });
   }
@@ -82,8 +121,10 @@ export default class RaceDetail extends React.Component {
         <View style={styles.marginBottom}></View>
         </Card>
         <View>
-          <Button rounded danger style={styles.button}>
-            <Text>Quero participar!</Text>
+          <Button rounded danger
+            style={{ marginTop: 20, marginBottom: 20, alignSelf: "center", backgroundColor: this.state.bgColor}}
+            onPress={() => this.checkInEvent(1, this.state.race.id)}>
+            <Text>{this.state.buttonMsg}</Text>
           </Button>
         </View>
         <View style={styles.marginBottom}></View>
@@ -142,11 +183,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'rgb(63, 81, 181)',
     marginRight: 10,
-  },
-  button: {
-    marginTop: 20,
-    marginBottom: 20,
-    alignSelf: "center",
-    backgroundColor: AppConfig.primaryColor,
   },
 });
