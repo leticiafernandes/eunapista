@@ -3,14 +3,35 @@ import { AppRegistry, View, StatusBar, StyleSheet, Alert, BackAndroid, BackHandl
 import { Container, Header, Content, List, ListItem, Text, Button, Thumbnail, Left, Body, Icon } from 'native-base';
 import AppConfig from '../config';
 import Session from "../Util/Session.js";
+import axios from 'axios';
 
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: 'pedro01@email.com'
+      email: 'teste',
+      event_names: []
     };
+  }
+
+  componentDidMount() {
+    var self = this;
+    axios.get(`${AppConfig.host}/user_event?user_id=1`)
+    .then(response => {
+      let events = response.data,
+          event_names = [];
+      events.map((event) => {
+          event_names.push(event.name)
+      });
+
+      this.setState({
+        event_names
+      });
+    }).catch((error)=>{
+      console.log("api call error - busca json event");
+      alert(error.message);
+    });
   }
 
   logout = () => {
@@ -21,8 +42,6 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    var race_name = [ 'Golden Run 21km','Do Leme ao Pontal','Corrida 10km','Corrida 5km'];
-
     return (
       <Container style={styles.container}>
         <Content padder>
@@ -40,7 +59,7 @@ export default class Profile extends React.Component {
           <View style={styles.checkIn2}>
             <Text style={styles.text3}>Corridas que fez check-in:</Text>
             <List
-              dataArray={race_name}
+              dataArray={this.state.event_names}
               removeClippedSubviews={false}
               renderRow={(item) =>
                 <ListItem icon
