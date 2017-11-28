@@ -4,6 +4,7 @@ import { Container, Header, Body, Content, Title, List, ListItem, Thumbnail,Butt
 import { StackNavigator } from 'react-navigation';
 import axios from 'axios';
 import AppConfig from '../config';
+import Session from "../Util/Session.js";
 
 export default class Events extends React.Component {
 

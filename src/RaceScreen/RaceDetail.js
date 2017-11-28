@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import numeral from 'numeral';
 import AppConfig from '../config';
+import Session from "../Util/Session.js";
 
 export default class RaceDetail extends React.Component {
 
@@ -16,15 +17,20 @@ export default class RaceDetail extends React.Component {
     this.state = {
       race: {},
       buttonMsg: 'Adicionar a minha lista',
-      bgColor: AppConfig.primaryColor
+      bgColor: AppConfig.primaryColor,
+      user_id: ''
     };
   }
 
   componentDidMount() {
+    Session.getItem("@user_id")
+    .then((user_id) => {
+      this.setState({ user_id });
+    });
+
     var self = this;
     axios.get(`${AppConfig.host}/events/${this.props.navigation.state.params.id}.json`)
     .then(response => {
-      console.log(response.data)
       self.setState({race: response.data})
     }).catch((error)=>{
       console.log("api call error - busca json event");
@@ -33,9 +39,6 @@ export default class RaceDetail extends React.Component {
   }
 
   checkInEvent = (user_id,event_id) => {
-    console.log(user_id);
-    console.log(event_id);
-
     let params = {
       user_id,
       event_id
@@ -43,8 +46,6 @@ export default class RaceDetail extends React.Component {
 
     axios.post(`${AppConfig.host}/check_in`,params)
     .then(response => {
-      console.log(`msg => ${response.data} // status=> ${response.status}`);
-
       let status = response.status;
 
       switch (status) {
@@ -123,7 +124,7 @@ export default class RaceDetail extends React.Component {
         <View>
           <Button rounded danger
             style={{ marginTop: 20, marginBottom: 20, alignSelf: "center", backgroundColor: this.state.bgColor}}
-            onPress={() => this.checkInEvent(1, this.state.race.id)}>
+            onPress={() => this.checkInEvent(this.state.user_id, this.state.race.id)}>
             <Text>{this.state.buttonMsg}</Text>
           </Button>
         </View>

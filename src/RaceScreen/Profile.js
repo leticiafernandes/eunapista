@@ -10,14 +10,28 @@ export default class Profile extends React.Component {
     super(props);
 
     this.state = {
-      email: 'teste',
-      event_names: []
+      event_names: [],
+      user_id: '',
+      email: ''
     };
   }
 
   componentDidMount() {
     var self = this;
-    axios.get(`${AppConfig.host}/user_event?user_id=1`)
+
+    Session.getItem("@user_id")
+    .then((user_id) => {
+      this.findEventByUser(user_id);
+    });
+
+    Session.getItem("@email")
+    .then((value) => {
+      this.setState({ email: value });
+    });
+  }
+
+  findEventByUser = (user_id) => {
+    axios.get(`${AppConfig.host}/user_event?user_id=${user_id}`)
     .then(response => {
       let events = response.data,
           event_names = [];
@@ -29,7 +43,6 @@ export default class Profile extends React.Component {
         event_names
       });
     }).catch((error)=>{
-      console.log("api call error - busca json event");
       alert(error.message);
     });
   }

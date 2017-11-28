@@ -62,16 +62,10 @@ export default class Login extends React.Component {
     const emailError = validate('email', this.state.email);
     const passwordError = validate('password', this.state.password);
 
-    console.log('emailError1 => '+emailError);
-    console.log('passwordError1 => '+passwordError);
-
     this.setState({
       emailError: emailError,
       passwordError: passwordError
     });
-
-    console.log('emailError2 => '+this.state.emailError);
-    console.log('passwordError2 => '+this.state.passwordError);
 
     if (!emailError && !passwordError) {
       this.loginUser();
@@ -83,8 +77,6 @@ export default class Login extends React.Component {
         params = {
           email: this.state.email
         };
-    console.log(url);
-    console.log(this.state.email);
     axios
     .post(url, params)
     .then(response => {
@@ -93,11 +85,12 @@ export default class Login extends React.Component {
           <HomeScreen />
         )
       });
+
       Session.setItem("@login", "sucesso");
-      console.log('Sucesso!');
+      Session.setItem("@email", `${response.data.email}`);
+      Session.setItem("@user_id", `${response.data.id}`);
     })
     .catch(error => {
-      console.log(`Error: ${error}`);
       alert(error.message);
     });
   }

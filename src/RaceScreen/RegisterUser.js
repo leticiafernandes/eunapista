@@ -92,10 +92,6 @@ export default class RegisterUser extends React.Component {
           password: this.state.password,
           password_confirmation: this.state.password_confirmation
         };
-    console.log(url);
-    console.log(this.state.email);
-    console.log(this.state.password);
-    console.log(this.state.password_confirmation);
     axios
     .post(url, params)
     .then(response => {
@@ -105,7 +101,8 @@ export default class RegisterUser extends React.Component {
         )
       });
       Session.setItem("@login", "sucesso");
-      console.log('Sucesso!');
+      Session.setItem("@email", `${response.data.email}`);
+      Session.setItem("@user_id", `${response.data.id}`);
     })
     .catch(error => {
       console.log(`Error: ${error}`);
