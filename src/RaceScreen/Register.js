@@ -65,7 +65,7 @@ export default class Register extends React.Component {
     axios
     .post(url, params)
     .then(response => {
-      this.props.navigation.navigate("Events", { refresh: refreshFunction });
+      this.props.navigation.navigate("Events");
       console.log('Sucesso!');
     })
     .catch(error => {
