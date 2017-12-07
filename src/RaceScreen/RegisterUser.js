@@ -41,12 +41,14 @@ export default class RegisterUser extends React.Component {
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Senha</Label>
               <TextField
+              isPassword={true}
               placeholder="senha"
               onChangeText={password => this.setState({password: password.trim()})} />
             </View>
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Confirme sua senha</Label>
               <TextField
+              isPassword={true}
               placeholder="senha"
               onChangeText={password_confirmation => this.setState({password_confirmation: password_confirmation.trim()})} />
             </View>

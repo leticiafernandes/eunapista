@@ -42,6 +42,7 @@ export default class Login extends React.Component {
             <View style={styles.marginTop}>
               <Label style={styles.labelText}>Senha</Label>
               <TextField
+              isPassword={true}
               placeholder="senha"
               onChangeText={password => this.setState({password: password.trim()})}
               error={this.state.passwordError} />

@@ -23,8 +23,10 @@ export default class TextField extends Component {
       <View>
         <View style={styles.inputStyle}>
           <TextInput
+          secureTextEntry={this.props.isPassword}
           underlineColorAndroid="transparent"
           onChangeText={this.handleChangeText}
+          autoCapitalize="none"
           />
         </View>
         <View>
